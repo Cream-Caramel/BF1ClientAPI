@@ -165,14 +165,6 @@ public static class Player
             }
 
         NO_WEAPON:
-            var weaponInfoS1 = ClientUtil.GetWeaponInfo(_weaponSlot[1]);
-            var weaponInfoS2 = ClientUtil.GetWeaponInfo(_weaponSlot[2]);
-            var weaponInfoS3 = ClientUtil.GetWeaponInfo(_weaponSlot[3]);
-            var weaponInfoS4 = ClientUtil.GetWeaponInfo(_weaponSlot[4]);
-            var weaponInfoS5 = ClientUtil.GetWeaponInfo(_weaponSlot[5]);
-            var weaponInfoS6 = ClientUtil.GetWeaponInfo(_weaponSlot[6]);
-            var weaponInfoS7 = ClientUtil.GetWeaponInfo(_weaponSlot[7]);
-
             // 过滤重复玩家，并填充数据
             var index = _playerList.FindIndex(val => val.PersonaId == personaId);
             if (index == -1)
