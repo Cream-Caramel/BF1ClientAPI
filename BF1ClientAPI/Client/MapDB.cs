@@ -20,64 +20,64 @@ public static class MapDB
     /// </summary>
     public readonly static List<MapInfo> AllMapInfo = new()
     {
-        new() { English="ID_M_LEVEL_MENU", Chinese="大厅菜单" },
-        new() { English="ID_M_MP_LEVEL_MOUNTAIN_FORT", Chinese="格拉巴山", Team1=ITA, Team2=AHU, Team1Image="ITA", Team2Image="AHU", MapImage="MP_MountainFort_LandscapeLarge-8a517533.jpg" },
-        new() { English="ID_M_MP_LEVEL_FOREST", Chinese="阿尔贡森林", Team1=USA, Team2=GER, Team1Image="USA", Team2Image="GER", MapImage="MP_Forest_LandscapeLarge-dfbbe910.jpg" },
-        new() { English="ID_M_MP_LEVEL_ITALIAN_COAST", Chinese="帝国边境", Team1=ITA, Team2=AHU, Team1Image="ITA", Team2Image="AHU", MapImage="MP_ItalianCoast_LandscapeLarge-1503eec7.jpg" },
-        new() { English="ID_M_MP_LEVEL_CHATEAU", Chinese="流血宴厅", Team1=USA, Team2=GER, Team1Image="USA", Team2Image="GER", MapImage="MP_Chateau_LandscapeLarge-244d5987.jpg" },
-        new() { English="ID_M_MP_LEVEL_SCAR", Chinese="圣康坦的伤痕", Team1=GER, Team2=UK, Team1Image="GER", Team2Image="UK", MapImage="MP_Scar_LandscapeLarge-ee25fbd6.jpg" },
-        new() { English="ID_M_MP_LEVEL_DESERT", Chinese="西奈沙漠", Team1=UK, Team2=OTM, Team1Image="UK", Team2Image="OTM", MapImage="MP_Desert_LandscapeLarge-d8f749da.jpg" },
-        new() { English="ID_M_MP_LEVEL_AMIENS", Chinese="亚眠", Team1=GER, Team2=UK, Team1Image="GER", Team2Image="UK", MapImage="MP_Amiens_LandscapeLarge-e195589d.jpg" },
-        new() { English="ID_M_MP_LEVEL_SUEZ", Chinese="苏伊士", Team1=UK, Team2=OTM, Team1Image="UK", Team2Image="OTM", MapImage="MP_Suez_LandscapeLarge-f630fc76.jpg" },
-        new() { English="ID_M_MP_LEVEL_FAO_FORTRESS", Chinese="法欧堡", Team1=UK, Team2=OTM, Team1Image="UK", Team2Image="OTM", MapImage="MP_FaoFortress_LandscapeLarge-cad1748e.jpg" },
-        new() { English="ID_M_MP_LEVEL_GIANT", Chinese="庞然暗影", Team1=UK, Team2=GER, Team1Image="UK", Team2Image="GER", MapImage="MP_Giant_LandscapeLarge-dd0b93ef.jpg" },
-        new() { English="ID_M_MP_LEVEL_FIELDS", Chinese="苏瓦松", Team1=FRA, Team2=GER, Team1Image="FRA", Team2Image="GER", MapImage="MP_Fields_LandscapeLarge-5f53ddc4.jpg" },
-        new() { English="ID_M_MP_LEVEL_GRAVEYARD", Chinese="决裂", Team1=FRA, Team2=GER, Team1Image="FRA", Team2Image="GER", MapImage="MP_Graveyard_LandscapeLarge-bd1012e6.jpg" },
-        new() { English="ID_M_MP_LEVEL_UNDERWORLD", Chinese="法乌克斯要塞", Team1=GER, Team2=FRA, Team1Image="GER", Team2Image="FRA", MapImage="MP_Underworld_LandscapeLarge-b6c5c7e7.jpg" },
-        new() { English="ID_M_MP_LEVEL_VERDUN", Chinese="凡尔登高地", Team1=GER, Team2=FRA, Team1Image="GER", Team2Image="FRA", MapImage="MP_Verdun_LandscapeLarge-1a364063.jpg" },
-        new() { English="ID_M_MP_LEVEL_TRENCH", Chinese="尼维尔之夜", Team1=GER, Team2=FRA, Team1Image="GER", Team2Image="FRA", MapImage="MP_Trench_LandscapeLarge-dbd1248f.jpg" },
-        new() { English="ID_M_MP_LEVEL_SHOVELTOWN", Chinese="攻占托尔", Team1=GER, Team2=FRA, Team1Image="GER", Team2Image="FRA", MapImage="MP_Shoveltown_LandscapeLarge-d0aa5920.jpg" },
-        new() { English="ID_M_MP_LEVEL_BRIDGE", Chinese="勃鲁希洛夫关口", Team1=RUS, Team2=AHU, Team1Image="RUS", Team2Image="AHU", MapImage="MP_Bridge_LandscapeLarge-5b7f1b62.jpg" },
-        new() { English="ID_M_MP_LEVEL_ISLANDS", Chinese="阿尔比恩", Team1=GER, Team2=RUS, Team1Image="GER", Team2Image="RUS", MapImage="MP_Islands_LandscapeLarge-c9d8272b.jpg" },
-        new() { English="ID_M_MP_LEVEL_RAVINES", Chinese="武普库夫山口", Team1=AHU, Team2=RUS, Team1Image="AHU", Team2Image="RUS", MapImage="MP_Ravines_LandscapeLarge-1fe0d3f6.jpg" },
-        new() { English="ID_M_MP_LEVEL_VALLEY", Chinese="加利西亚", Team1=RUS, Team2=AHU, Team1Image="RUS", Team2Image="AHU", MapImage="MP_Valley_LandscapeLarge-8dc1c7ca.jpg" },
-        new() { English="ID_M_MP_LEVEL_TSARITSYN", Chinese="察里津", Team1=BOL, Team2=RUS, Team1Image="BOL", Team2Image="RUS", MapImage="MP_Tsaritsyn_LandscapeLarge-2dbd3bf5.jpg" },
-        new() { English="ID_M_MP_LEVEL_VOLGA", Chinese="窝瓦河", Team1=BOL, Team2=RUS, Team1Image="BOL", Team2Image="RUS", MapImage="MP_Volga_LandscapeLarge-6ac49c25.jpg" },
-        new() { English="ID_M_MP_LEVEL_BEACHHEAD", Chinese="海丽丝岬", Team1=UK, Team2=OTM, Team1Image="UK", Team2Image="OTM", MapImage="MP_Beachhead_LandscapeLarge-5a13c655.jpg" },
-        new() { English="ID_M_MP_LEVEL_HARBOR", Chinese="泽布吕赫", Team1=RM, Team2=GER, Team1Image="RM", Team2Image="GER", MapImage="MP_Harbor_LandscapeLarge-d382c7ea.jpg" },
-        new() { English="ID_M_MP_LEVEL_NAVAL", Chinese="黑尔戈兰湾", Team1=RM, Team2=GER, Team1Image="RM", Team2Image="GER", MapImage="MP_Naval_LandscapeLarge-dc2e8daf.jpg" },
-        new() { English="ID_M_MP_LEVEL_RIDGE", Chinese="阿奇巴巴", Team1=UK, Team2=OTM, Team1Image="UK", Team2Image="OTM", MapImage="MP_Ridge_LandscapeLarge-8c057a19.jpg" },
-        new() { English="ID_M_MP_LEVEL_OFFENSIVE", Chinese="索姆河", Team1=UK, Team2=GER, Team1Image="UK", Team2Image="GER", MapImage="MP_Offensive_LandscapeLarge-6dabdea3.jpg" },
-        new() { English="ID_M_MP_LEVEL_HELL", Chinese="帕斯尚尔", Team1=UK, Team2=GER, Team1Image="UK", Team2Image="GER", MapImage="MP_Hell_LandscapeLarge-7176911c.jpg" },
-        new() { English="ID_M_MP_LEVEL_RIVER", Chinese="卡波雷托", Team1=AHU, Team2=ITA, Team1Image="AHU", Team2Image="ITA", MapImage="MP_River_LandscapeLarge-21443ae9.jpg" },
-        new() { English="ID_M_MP_LEVEL_ALPS", Chinese="剃刀边缘", Team1=GER, Team2=UK, Team1Image="GER", Team2Image="UK", MapImage="MP_Alps_LandscapeLarge-7ab30e3e.jpg" },
-        new() { English="ID_M_MP_LEVEL_BLITZ", Chinese="伦敦的呼唤：夜袭", Team1=GER, Team2=UK, Team1Image="GER", Team2Image="UK", MapImage="MP_Blitz_LandscapeLarge-5e26212f.jpg" },
-        new() { English="ID_M_MP_LEVEL_LONDON", Chinese="伦敦的呼唤：灾祸", Team1=GER, Team2=UK, Team1Image="GER", Team2Image="UK", MapImage="MP_London_LandscapeLarge-0b51fe46.jpg" }
+        new() { Id="ID_M_LEVEL_MENU", Name="大厅菜单" },
+        new() { Id="ID_M_MP_LEVEL_MOUNTAIN_FORT", Name="格拉巴山", Team1Name=ITA, Team2Name=AHU, Team1Image="ITA.png", Team2Image="AHU.png", Image="MP_MountainFort_LandscapeLarge-8a517533.jpg" },
+        new() { Id="ID_M_MP_LEVEL_FOREST", Name="阿尔贡森林", Team1Name=USA, Team2Name=GER, Team1Image="USA.png", Team2Image="GER.png", Image="MP_Forest_LandscapeLarge-dfbbe910.jpg" },
+        new() { Id="ID_M_MP_LEVEL_ITALIAN_COAST", Name="帝国边境", Team1Name=ITA, Team2Name=AHU, Team1Image="ITA.png", Team2Image="AHU.png", Image="MP_ItalianCoast_LandscapeLarge-1503eec7.jpg" },
+        new() { Id="ID_M_MP_LEVEL_CHATEAU", Name="流血宴厅", Team1Name=USA, Team2Name=GER, Team1Image="USA.png", Team2Image="GER.png", Image="MP_Chateau_LandscapeLarge-244d5987.jpg" },
+        new() { Id="ID_M_MP_LEVEL_SCAR", Name="圣康坦的伤痕", Team1Name=GER, Team2Name=UK, Team1Image="GER.png", Team2Image="UK.png", Image="MP_Scar_LandscapeLarge-ee25fbd6.jpg" },
+        new() { Id="ID_M_MP_LEVEL_DESERT", Name="西奈沙漠", Team1Name=UK, Team2Name=OTM, Team1Image="UK.png", Team2Image="OTM.png", Image="MP_Desert_LandscapeLarge-d8f749da.jpg" },
+        new() { Id="ID_M_MP_LEVEL_AMIENS", Name="亚眠", Team1Name=GER, Team2Name=UK, Team1Image="GER.png", Team2Image="UK.png", Image="MP_Amiens_LandscapeLarge-e195589d.jpg" },
+        new() { Id="ID_M_MP_LEVEL_SUEZ", Name="苏伊士", Team1Name=UK, Team2Name=OTM, Team1Image="UK.png", Team2Image="OTM.png", Image="MP_Suez_LandscapeLarge-f630fc76.jpg" },
+        new() { Id="ID_M_MP_LEVEL_FAO_FORTRESS", Name="法欧堡", Team1Name=UK, Team2Name=OTM, Team1Image="UK.png", Team2Image="OTM.png", Image="MP_FaoFortress_LandscapeLarge-cad1748e.jpg" },
+        new() { Id="ID_M_MP_LEVEL_GIANT", Name="庞然暗影", Team1Name=UK, Team2Name=GER, Team1Image="UK.png", Team2Image="GER.png", Image="MP_Giant_LandscapeLarge-dd0b93ef.jpg" },
+        new() { Id="ID_M_MP_LEVEL_FIELDS", Name="苏瓦松", Team1Name=FRA, Team2Name=GER, Team1Image="FRA.png", Team2Image="GER.png", Image="MP_Fields_LandscapeLarge-5f53ddc4.jpg" },
+        new() { Id="ID_M_MP_LEVEL_GRAVEYARD", Name="决裂", Team1Name=FRA, Team2Name=GER, Team1Image="FRA.png", Team2Image="GER.png", Image="MP_Graveyard_LandscapeLarge-bd1012e6.jpg" },
+        new() { Id="ID_M_MP_LEVEL_UNDERWORLD", Name="法乌克斯要塞", Team1Name=GER, Team2Name=FRA, Team1Image="GER.png", Team2Image="FRA.png", Image="MP_Underworld_LandscapeLarge-b6c5c7e7.jpg" },
+        new() { Id="ID_M_MP_LEVEL_VERDUN", Name="凡尔登高地", Team1Name=GER, Team2Name=FRA, Team1Image="GER.png", Team2Image="FRA.png", Image="MP_Verdun_LandscapeLarge-1a364063.jpg" },
+        new() { Id="ID_M_MP_LEVEL_TRENCH", Name="尼维尔之夜", Team1Name=GER, Team2Name=FRA, Team1Image="GER.png", Team2Image="FRA.png", Image="MP_Trench_LandscapeLarge-dbd1248f.jpg" },
+        new() { Id="ID_M_MP_LEVEL_SHOVELTOWN", Name="攻占托尔", Team1Name=GER, Team2Name=FRA, Team1Image="GER.png", Team2Image="FRA.png", Image="MP_Shoveltown_LandscapeLarge-d0aa5920.jpg" },
+        new() { Id="ID_M_MP_LEVEL_BRIDGE", Name="勃鲁希洛夫关口", Team1Name=RUS, Team2Name=AHU, Team1Image="RUS.png", Team2Image="AHU.png", Image="MP_Bridge_LandscapeLarge-5b7f1b62.jpg" },
+        new() { Id="ID_M_MP_LEVEL_ISLANDS", Name="阿尔比恩", Team1Name=GER, Team2Name=RUS, Team1Image="GER.png", Team2Image="RUS.png", Image="MP_Islands_LandscapeLarge-c9d8272b.jpg" },
+        new() { Id="ID_M_MP_LEVEL_RAVINES", Name="武普库夫山口", Team1Name=AHU, Team2Name=RUS, Team1Image="AHU.png", Team2Image="RUS.png", Image="MP_Ravines_LandscapeLarge-1fe0d3f6.jpg" },
+        new() { Id="ID_M_MP_LEVEL_VALLEY", Name="加利西亚", Team1Name=RUS, Team2Name=AHU, Team1Image="RUS.png", Team2Image="AHU.png", Image="MP_Valley_LandscapeLarge-8dc1c7ca.jpg" },
+        new() { Id="ID_M_MP_LEVEL_TSARITSYN", Name="察里津", Team1Name=BOL, Team2Name=RUS, Team1Image="BOL.png", Team2Image="RUS.png", Image="MP_Tsaritsyn_LandscapeLarge-2dbd3bf5.jpg" },
+        new() { Id="ID_M_MP_LEVEL_VOLGA", Name="窝瓦河", Team1Name=BOL, Team2Name=RUS, Team1Image="BOL.png", Team2Image="RUS.png", Image="MP_Volga_LandscapeLarge-6ac49c25.jpg" },
+        new() { Id="ID_M_MP_LEVEL_BEACHHEAD", Name="海丽丝岬", Team1Name=UK, Team2Name=OTM, Team1Image="UK.png", Team2Image="OTM.png", Image="MP_Beachhead_LandscapeLarge-5a13c655.jpg" },
+        new() { Id="ID_M_MP_LEVEL_HARBOR", Name="泽布吕赫", Team1Name=RM, Team2Name=GER, Team1Image="RM.png", Team2Image="GER.png", Image="MP_Harbor_LandscapeLarge-d382c7ea.jpg" },
+        new() { Id="ID_M_MP_LEVEL_NAVAL", Name="黑尔戈兰湾", Team1Name=RM, Team2Name=GER, Team1Image="RM.png", Team2Image="GER.png", Image="MP_Naval_LandscapeLarge-dc2e8daf.jpg" },
+        new() { Id="ID_M_MP_LEVEL_RIDGE", Name="阿奇巴巴", Team1Name=UK, Team2Name=OTM, Team1Image="UK.png", Team2Image="OTM.png", Image="MP_Ridge_LandscapeLarge-8c057a19.jpg" },
+        new() { Id="ID_M_MP_LEVEL_OFFENSIVE", Name="索姆河", Team1Name=UK, Team2Name=GER, Team1Image="UK.png", Team2Image="GER.png", Image="MP_Offensive_LandscapeLarge-6dabdea3.jpg" },
+        new() { Id="ID_M_MP_LEVEL_HELL", Name="帕斯尚尔", Team1Name=UK, Team2Name=GER, Team1Image="UK.png", Team2Image="GER.png", Image="MP_Hell_LandscapeLarge-7176911c.jpg" },
+        new() { Id="ID_M_MP_LEVEL_RIVER", Name="卡波雷托", Team1Name=AHU, Team2Name=ITA, Team1Image="AHU.png", Team2Image="ITA.png", Image="MP_River_LandscapeLarge-21443ae9.jpg" },
+        new() { Id="ID_M_MP_LEVEL_ALPS", Name="剃刀边缘", Team1Name=GER, Team2Name=UK, Team1Image="GER.png", Team2Image="UK.png", Image="MP_Alps_LandscapeLarge-7ab30e3e.jpg" },
+        new() { Id="ID_M_MP_LEVEL_BLITZ", Name="伦敦的呼唤：夜袭", Team1Name=GER, Team2Name=UK, Team1Image="GER.png", Team2Image="UK.png", Image="MP_Blitz_LandscapeLarge-5e26212f.jpg" },
+        new() { Id="ID_M_MP_LEVEL_LONDON", Name="伦敦的呼唤：灾祸", Team1Name=GER, Team2Name=UK, Team1Image="GER.png", Team2Image="UK.png", Image="MP_London_LandscapeLarge-0b51fe46.jpg" }
     };
 }
 
 public class MapInfo
 {
-    public string English;
-    public string Chinese;
-    public string Team1;
-    public string Team2;
+    public string Id;
+    public string Name;
+    public string Team1Name;
+    public string Team2Name;
     public string Team1Image;
     public string Team2Image;
-    public string MapImage;
+    public string Image;
 
     public string GetTeam1Image()
     {
-        return ClientUtil.GetHostImageURL($"Teams\\{Team1Image}.png");
+        return ClientUtil.GetHostImageURL($"Teams\\{Team1Image}");
     }
 
     public string GetTeam2Image()
     {
-        return ClientUtil.GetHostImageURL($"Teams\\{Team2Image}.png");
+        return ClientUtil.GetHostImageURL($"Teams\\{Team2Image}");
     }
 
     public string GetMapImage()
     {
-        return ClientUtil.GetHostImageURL($"Maps\\{MapImage}.png");
+        return ClientUtil.GetHostImageURL($"Maps\\{Image}");
     }
 }

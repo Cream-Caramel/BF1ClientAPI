@@ -3,6 +3,26 @@
 public static class GameUtil
 {
     /// <summary>
+    /// 判断是否为观战玩家
+    /// </summary>
+    /// <param name="flag"></param>
+    /// <returns></returns>
+    public static bool IsSpectator(byte flag)
+    {
+        return flag == 0x01;
+    }
+
+    /// <summary>
+    /// 判断是否进入游戏
+    /// </summary>
+    /// <param name="gameId"></param>
+    /// <returns></returns>
+    public static bool IsInGame(long gameId)
+    {
+        return gameId != 0;
+    }
+
+    /// <summary>
     /// 修复载具分类
     /// </summary>
     /// <param name="name1"></param>

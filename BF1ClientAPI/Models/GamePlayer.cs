@@ -1,6 +1,4 @@
-﻿using BF1ClientAPI.Client;
-
-namespace BF1ClientAPI.Models;
+﻿namespace BF1ClientAPI.Models;
 
 public class GamePlayer
 {
@@ -23,21 +21,27 @@ public class GamePlayer
     public float KD { get; set; }
     public float KPM { get; set; }
 
-    public float LifeKD { get; set; }
-    public float LifeKPM { get; set; }
-    public int LifeTime { get; set; }
-    public int LifeStar { get; set; }
-
     public string Kit { get; set; }
     public string KitName { get; set; }
     public string KitImage { get; set; }
+    public string KitImage2 { get; set; }
 
-    public WeaponInfo WeaponS0 { get; set; }
-    public WeaponInfo WeaponS1 { get; set; }
-    public WeaponInfo WeaponS2 { get; set; }
-    public WeaponInfo WeaponS3 { get; set; }
-    public WeaponInfo WeaponS4 { get; set; }
-    public WeaponInfo WeaponS5 { get; set; }
-    public WeaponInfo WeaponS6 { get; set; }
-    public WeaponInfo WeaponS7 { get; set; }
+    public Weapon WeaponS0 { get; set; }
+    public Weapon WeaponS1 { get; set; }
+    public Weapon WeaponS2 { get; set; }
+    public Weapon WeaponS3 { get; set; }
+    public Weapon WeaponS4 { get; set; }
+    public Weapon WeaponS5 { get; set; }
+    public Weapon WeaponS6 { get; set; }
+    public Weapon WeaponS7 { get; set; }
+}
+
+public class Weapon
+{
+    public string Kind { get; set; }
+    public string Guid { get; set; }
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public string Image { get; set; }
+    public string Image2 { get; set; }
 }

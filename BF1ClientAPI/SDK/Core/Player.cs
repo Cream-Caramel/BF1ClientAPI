@@ -14,7 +14,7 @@ public static class Player
     /// 获取自己信息
     /// </summary>
     /// <returns></returns>
-    public static LocalPlayer GetPlayerLocal()
+    public static LocalPlayer GetLocalPlayer()
     {
         var baseAddress = Obfuscation.GetLocalPlayer();
         if (!Memory.IsValid(baseAddress))
@@ -62,7 +62,7 @@ public static class Player
             // 玩家队标
             var clan = Memory.ReadString(baseAddress + 0x2151, 8);
             // 玩家名称
-            var name = Memory.ReadString(baseAddress + 0x11A8, 64);
+            var name = Memory.ReadString(baseAddress + 0x40, 64);
 
             // 玩家兵种
             var offset = Memory.Read<long>(baseAddress + 0x11A8);
@@ -165,6 +165,14 @@ public static class Player
             }
 
         NO_WEAPON:
+            var weaponInfoS1 = ClientUtil.GetWeaponInfo(_weaponSlot[1]);
+            var weaponInfoS2 = ClientUtil.GetWeaponInfo(_weaponSlot[2]);
+            var weaponInfoS3 = ClientUtil.GetWeaponInfo(_weaponSlot[3]);
+            var weaponInfoS4 = ClientUtil.GetWeaponInfo(_weaponSlot[4]);
+            var weaponInfoS5 = ClientUtil.GetWeaponInfo(_weaponSlot[5]);
+            var weaponInfoS6 = ClientUtil.GetWeaponInfo(_weaponSlot[6]);
+            var weaponInfoS7 = ClientUtil.GetWeaponInfo(_weaponSlot[7]);
+
             // 过滤重复玩家，并填充数据
             var index = _playerList.FindIndex(val => val.PersonaId == personaId);
             if (index == -1)
@@ -174,25 +182,43 @@ public static class Player
                     Mark = mark,
                     TeamId = teamId,
                     Spectator = spectator,
+                    IsSpectator = GameUtil.IsSpectator(spectator),
                     Clan = clan,
                     Name = name,
                     PersonaId = personaId,
+
                     SquadId = squadId,
-                    Kit = kit,
+                    SquadName = ClientUtil.GetSquadNameById(squadId),
 
                     Rank = 0,
                     Kill = 0,
                     Dead = 0,
                     Score = 0,
 
-                    WeaponS0 = _weaponSlot[0],
-                    WeaponS1 = _weaponSlot[1],
-                    WeaponS2 = _weaponSlot[2],
-                    WeaponS3 = _weaponSlot[3],
-                    WeaponS4 = _weaponSlot[4],
-                    WeaponS5 = _weaponSlot[5],
-                    WeaponS6 = _weaponSlot[6],
-                    WeaponS7 = _weaponSlot[7],
+                    KD = 0,
+                    KPM = 0,
+
+                    Kit = kit,
+                    KitName = ClientUtil.GetPlayerKitName(kit),
+                    KitImage = ClientUtil.GetPlayerKitImage(kit, true),
+                    KitImage2 = ClientUtil.GetPlayerKitImage(kit),
+
+                    // 0 主要武器
+                    WeaponS0 = PlayerUtil.GetPlayerWeapon(_weaponSlot[0], "主要武器"),
+                    // 1 配枪
+                    WeaponS1 = PlayerUtil.GetPlayerWeapon(_weaponSlot[1], "配枪"),
+                    // 2 配备一
+                    WeaponS2 = PlayerUtil.GetPlayerWeapon(_weaponSlot[2], "配备一"),
+                    // 3 特殊
+                    WeaponS3 = PlayerUtil.GetPlayerWeapon(_weaponSlot[3], "特殊"),
+                    // 4 V键
+                    WeaponS4 = PlayerUtil.GetPlayerWeapon(_weaponSlot[4], "V键"),
+                    // 5 配备二
+                    WeaponS5 = PlayerUtil.GetPlayerWeapon(_weaponSlot[5], "配备二"),
+                    // 6 手榴弹
+                    WeaponS6 = PlayerUtil.GetPlayerWeapon(_weaponSlot[6], "手榴弹"),
+                    // 7 近战
+                    WeaponS7 = PlayerUtil.GetPlayerWeapon(_weaponSlot[7], "近战"),
                 });
             }
         }

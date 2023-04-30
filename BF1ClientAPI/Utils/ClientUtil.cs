@@ -14,6 +14,68 @@ public static class ClientUtil
         return $"{Program.Host}\\images\\{url}";
     }
 
+    ///////////////////////////////////////////////
+
+    #region 获取信息基础方法
+    /// <summary>
+    /// 获取兵种信息
+    /// </summary>
+    /// <param name="kit"></param>
+    /// <returns></returns>
+    public static KitInfo GetKitInfo(string kit)
+    {
+        var result = KitDB.AllKitInfo.Find(var => var.Id == kit);
+        if (result != null)
+            return result;
+
+        return null;
+    }
+
+    /// <summary>
+    /// 获取地图信息
+    /// </summary>
+    /// <param name="map"></param>
+    /// <returns></returns>
+    public static MapInfo GetMapInfo(string map)
+    {
+        var result = MapDB.AllMapInfo.Find(var => var.Id == map);
+        if (result != null)
+            return result;
+
+        return null;
+    }
+
+    /// <summary>
+    /// 获取模式信息
+    /// </summary>
+    /// <param name="mode"></param>
+    /// <returns></returns>
+    public static ModeInfo GetModeInfo(string mode)
+    {
+        var result = ModeDB.AllModeInfo.Find(var => var.Id == mode);
+        if (result != null)
+            return result;
+
+        return null;
+    }
+
+    /// <summary>
+    /// 获取武器信息
+    /// </summary>
+    /// <param name="weapon"></param>
+    /// <returns></returns>
+    public static WeaponInfo GetWeaponInfo(string weapon)
+    {
+        var result = WeaponDB.AllWeaponInfo.Find(var => var.Id == weapon);
+        if (result != null)
+            return result;
+
+        return null;
+    }
+    #endregion
+
+    ///////////////////////////////////////////////
+
     /// <summary>
     /// 获取地图对应中文名称
     /// </summary>
@@ -21,9 +83,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetMapChsName(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.Chinese;
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.Name;
 
         return string.Empty;
     }
@@ -35,12 +97,14 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetMapImage(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.GetMapImage();
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.GetMapImage();
 
         return string.Empty;
     }
+
+    ///////////////////////////////////////////////
 
     /// <summary>
     /// 获取当前地图游戏模式
@@ -49,12 +113,14 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetGameMode(string mode)
     {
-        var result = ModeDB.AllModeInfo.Find(var => var.Mark == mode);
-        if (result != null)
-            return result.Chinese;
+        var modeInfo = GetModeInfo(mode);
+        if (modeInfo != null)
+            return modeInfo.Name;
 
         return string.Empty;
     }
+
+    ///////////////////////////////////////////////
 
     /// <summary>
     /// 获取武器简短名称，用于踢人理由
@@ -63,9 +129,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetWeaponShortTxt(string weapon)
     {
-        var result = WeaponDB.AllWeaponInfo.Find(var => var.English == weapon);
+        var result = GetWeaponInfo(weapon);
         if (result != null)
-            return result.ShortName;
+            return result.Kick;
 
         return string.Empty;
     }
@@ -77,7 +143,7 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetWeaponGuid(string weapon)
     {
-        var result = WeaponDB.AllWeaponInfo.Find(var => var.English == weapon);
+        var result = GetWeaponInfo(weapon);
         if (result != null)
             return result.Guid;
 
@@ -94,21 +160,21 @@ public static class ClientUtil
         if (string.IsNullOrWhiteSpace(weapon))
             return string.Empty;
 
-        if (weapon.Contains("_KBullet"))
+        if (weapon.EndsWith("_KBullet"))
             return "K 弹";
 
-        if (weapon.Contains("_RGL_Frag"))
+        if (weapon.EndsWith("_RGL_Frag"))
             return "步枪手榴弹（破片）";
 
-        if (weapon.Contains("_RGL_Smoke"))
+        if (weapon.EndsWith("_RGL_Smoke"))
             return "步枪手榴弹（烟雾）";
 
-        if (weapon.Contains("_RGL_HE"))
+        if (weapon.EndsWith("_RGL_HE"))
             return "步枪手榴弹（高爆）";
 
-        var result = WeaponDB.AllWeaponInfo.Find(var => var.English == weapon);
-        if (result != null)
-            return result.Chinese;
+        var weaponInfo = GetWeaponInfo(weapon);
+        if (weaponInfo != null)
+            return weaponInfo.Name;
 
         return string.Empty;
     }
@@ -124,24 +190,23 @@ public static class ClientUtil
         if (string.IsNullOrWhiteSpace(weapon))
             return string.Empty;
 
-        var tempName = string.Empty;
+        if (weapon.EndsWith("_KBullet"))
+            weapon = "_KBullet";
+        else if (weapon.EndsWith("_RGL_Frag"))
+            weapon = "_RGL_Frag";
+        else if (weapon.EndsWith("_RGL_Smoke"))
+            weapon = "_RGL_Smoke";
+        else if (weapon.EndsWith("_RGL_HE"))
+            weapon = "_RGL_HE";
 
-        if (weapon.Contains("_KBullet"))
-            tempName = "_KBullet";
-        else if (weapon.Contains("_RGL_Frag"))
-            tempName = "_RGL_Frag";
-        else if (weapon.Contains("_RGL_Smoke"))
-            tempName = "_RGL_Smoke";
-        else if (weapon.Contains("_RGL_HE"))
-            tempName = "_RGL_HE";
-
-        // 如果 tempName 不为空，则使用 tempName 匹配，否则继续使用 englishName 匹配
-        var result = WeaponDB.AllWeaponInfo.Find(var => var.English == (tempName != string.Empty ? tempName : weapon));
-        if (result != null)
-            return isGetWhite ? result.GetWeaponImage() : result.GetWeapon2Image();
+        var weaponInfo = GetWeaponInfo(weapon);
+        if (weaponInfo != null)
+            return isGetWhite ? weaponInfo.GetWeaponImage() : weaponInfo.GetWeapon2Image();
 
         return string.Empty;
     }
+
+    ///////////////////////////////////////////////
 
     /// <summary>
     /// 获取小队的中文名称
@@ -172,6 +237,8 @@ public static class ClientUtil
         };
     }
 
+    ///////////////////////////////////////////////
+
     /// <summary>
     /// 获取队伍1阵营中文名称
     /// </summary>
@@ -179,9 +246,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetTeam1ChsName(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.Team1;
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.Team1Name;
 
         return string.Empty;
     }
@@ -193,9 +260,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetTeam2ChsName(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.Team2;
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.Team2Name;
 
         return string.Empty;
     }
@@ -206,9 +273,9 @@ public static class ClientUtil
     /// <param name="map"></param>
     public static string GetTeam1Image(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.GetTeam1Image();
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.GetTeam1Image();
 
         return string.Empty;
     }
@@ -219,9 +286,9 @@ public static class ClientUtil
     /// <param name="map"></param>
     public static string GetTeam2Image(string map)
     {
-        var result = MapDB.AllMapInfo.Find(var => var.English == map);
-        if (result != null)
-            return result.GetTeam2Image();
+        var mapInfo = GetMapInfo(map);
+        if (mapInfo != null)
+            return mapInfo.GetTeam2Image();
 
         return string.Empty;
     }
@@ -233,9 +300,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetPlayerKitName(string kit)
     {
-        var result = KitDB.AllKitInfo.Find(var => var.English == kit);
-        if (result != null)
-            return result.Chinese;
+        var kitInfo = GetKitInfo(kit);
+        if (kitInfo != null)
+            return kitInfo.Name;
 
         return string.Empty;
     }
@@ -248,9 +315,9 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetPlayerKitImage(string kit, bool isGetWhite = false)
     {
-        var result = KitDB.AllKitInfo.Find(var => var.English == kit);
-        if (result != null)
-            return isGetWhite ? result.GetKitImage() : result.GetKit2Image();
+        var kitInfo = GetKitInfo(kit);
+        if (kitInfo != null)
+            return isGetWhite ? kitInfo.GetKitImage() : kitInfo.GetKit2Image();
 
         return string.Empty;
     }
