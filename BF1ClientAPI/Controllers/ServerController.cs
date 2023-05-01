@@ -4,15 +4,22 @@ using BF1ClientAPI.Models;
 
 namespace BF1ClientAPI.Controllers;
 
+/// <summary>
+/// 服务器
+/// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class ServerController : ControllerBase
 {
     /// <summary>
-    /// 获取当前服务器名称
+    /// 获取当前服务器数据
     /// </summary>
     /// <returns></returns>
+    /// <remarks>
+    /// 获取战地1当前进入服务器的服务器相关数据
+    /// </remarks>
     [HttpGet]
+    [Produces("application/json")]
     public ActionResult<ServerData> GetServerData()
     {
         var serverData = new ServerData();

@@ -45,7 +45,7 @@ public class Program
         Console.WriteLine("----------------------------");
         Console.WriteLine();
 
-        Console.WriteLine($"接口文档：{Host}/swagger/index.html");
+        Console.WriteLine($"接口文档：{Host}/index.html");
         Console.WriteLine("按 Ctrl+C 键结束程序");
         Console.WriteLine();
 
@@ -70,14 +70,34 @@ public class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("V1", new OpenApiInfo
+            {
+                Version = "V1",
+                Title = "战地1客户端API",
+                Description = "从战地1客户端内存中获取数据，方便其他语言调用，玩家可根据此API自定义开发服管工具",
+                Contact = new OpenApiContact()
+                {
+                    Name = "GitHub地址",
+                    Url = new Uri("https://github.com/CrazyZhang666/BF1ClientAPI")
+                }
+            });
+            // 显示文档注释
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), true);
+        });
 
         var app = builder.Build();
 
         app.UseCors("AllowAllOrigins");
 
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/V1/swagger.json", "API版本 V1");
+            options.RoutePrefix = string.Empty;
+        });
 
         app.UseStaticFiles();
         app.UseAuthorization();

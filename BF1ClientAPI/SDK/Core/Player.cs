@@ -182,14 +182,6 @@ public static class Player
                     SquadId = squadId,
                     SquadName = ClientUtil.GetSquadNameById(squadId),
 
-                    Rank = 0,
-                    Kill = 0,
-                    Dead = 0,
-                    Score = 0,
-
-                    KD = 0,
-                    KPM = 0,
-
                     Kit = kit,
                     KitName = ClientUtil.GetPlayerKitName(kit),
                     KitImage = ClientUtil.GetPlayerKitImage(kit, true),
