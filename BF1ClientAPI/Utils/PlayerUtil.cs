@@ -26,7 +26,11 @@ public static class PlayerUtil
             };
         }
 
-        return null;
+        return new Weapon()
+        {
+            Kind = kind,
+            Name = weapon
+        };
     }
 
     /// <summary>

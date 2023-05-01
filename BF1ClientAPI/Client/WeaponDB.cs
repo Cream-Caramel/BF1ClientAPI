@@ -414,11 +414,11 @@ public class WeaponInfo
 
     public string GetWeaponImage()
     {
-        return ClientUtil.GetHostImageURL($"Weapons\\{Image}");
+        return string.IsNullOrEmpty(Image) ? string.Empty : ClientUtil.GetHostImageURL($"Weapons\\{Image}");
     }
 
     public string GetWeapon2Image()
     {
-        return ClientUtil.GetHostImageURL($"Weapons2\\{Image}");
+        return string.IsNullOrEmpty(Image) ? string.Empty : ClientUtil.GetHostImageURL($"Weapons2\\{Image}");
     }
 }
