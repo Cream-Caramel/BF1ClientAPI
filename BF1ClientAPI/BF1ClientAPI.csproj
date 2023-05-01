@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
 
@@ -11,6 +11,10 @@
         <PlatformTarget>x64</PlatformTarget>
         <Platforms>x64</Platforms>
         <StartupObject>BF1ClientAPI.Program</StartupObject>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>1.0.0.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -27,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
+        <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
     </ItemGroup>
 
 </Project>
