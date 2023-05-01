@@ -6,11 +6,11 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0-windows</TargetFramework>
-        <Nullable>disable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <PlatformTarget>x64</PlatformTarget>
         <Platforms>x64</Platforms>
         <StartupObject>BF1ClientAPI.Program</StartupObject>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -24,6 +24,10 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
     </ItemGroup>
 
 </Project>

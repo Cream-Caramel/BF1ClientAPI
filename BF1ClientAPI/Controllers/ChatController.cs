@@ -1,5 +1,8 @@
 ﻿using BF1ClientAPI.SDK;
+using BF1ClientAPI.Utils;
 using BF1ClientAPI.Models;
+
+using ChineseConverter;
 
 namespace BF1ClientAPI.Controllers;
 
@@ -37,7 +40,10 @@ public class ChatController : ControllerBase
         if (string.IsNullOrWhiteSpace(message))
             return NoContent();
 
-        await Chat.SendMessage(delay, message);
+        if (!GameUtil.IsInGame())
+            return BadRequest();
+
+        await Chat.SendMessage(delay, ChineseConvert.ToTraditional(message));
 
         return Ok();
     }

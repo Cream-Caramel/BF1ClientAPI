@@ -52,6 +52,42 @@ public static class Win32
 
     [DllImport("kernel32.dll")]
     public static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION64 lpBuffer, int dwLength);
+
+    ///////////////////////////////////////////////////
+
+    [DllImport("user32.dll")]
+    public extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+    [DllImport("user32.dll")]
+    public extern static IntPtr GetSystemMenu(IntPtr hWnd, IntPtr bRevert);
+
+    [DllImport("user32.dll")]
+    public extern static IntPtr RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
+
+    ///////////////////////////////////////////////////
+
+    [DllImport("user32.dll")]
+    public static extern bool OpenClipboard(IntPtr hWndNewOwner);
+
+    [DllImport("user32.dll")]
+    public static extern bool CloseClipboard();
+
+    [DllImport("user32.dll")]
+    public static extern bool EmptyClipboard();
+
+    [DllImport("user32.dll")]
+    public static extern bool IsClipboardFormatAvailable(int format);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetClipboardData(int uFormat);
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    public static extern IntPtr SetClipboardData(int uFormat, IntPtr hMem);
+
+    ///////////////////////////////////////////////////
+
+    [DllImport("kernel32.dll")]
+    public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
 }
 
 [Flags]

@@ -185,6 +185,7 @@ public static class Chat
     /// <returns></returns>
     public static async Task SendMessage(int delay, string message)
     {
+        // 如果窗口最小化则退出
         if (GetIsMinimized())
             return;
 
@@ -194,6 +195,7 @@ public static class Chat
             Memory.SetBF1WindowForeground();
             await Task.Delay(delay);
 
+            // 如果聊天框开启则关闭
             if (GetIsOpenChat())
                 await Memory.KeyPress(WinVK.RETURN);
 
@@ -201,6 +203,7 @@ public static class Chat
                 break;
         }
 
+        // 如果窗口未置前则退出
         if (!GetIsTopWindow())
             return;
 
@@ -213,6 +216,7 @@ public static class Chat
                 break;
         }
 
+        // 如果聊天框未打开则退出
         if (!GetIsOpenChat())
             return;
 

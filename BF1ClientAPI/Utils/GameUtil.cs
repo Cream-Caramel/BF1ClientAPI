@@ -1,4 +1,6 @@
-﻿namespace BF1ClientAPI.Utils;
+﻿using BF1ClientAPI.SDK;
+
+namespace BF1ClientAPI.Utils;
 
 public static class GameUtil
 {
@@ -15,11 +17,10 @@ public static class GameUtil
     /// <summary>
     /// 判断是否进入游戏
     /// </summary>
-    /// <param name="gameId"></param>
     /// <returns></returns>
-    public static bool IsInGame(long gameId)
+    public static bool IsInGame()
     {
-        return gameId != 0;
+        return Server.GetMapName() != "ID_M_LEVEL_MENU";
     }
 
     /// <summary>

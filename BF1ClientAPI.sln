@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BF1ClientAPI", "BF1ClientAPI\BF1ClientAPI.csproj", "{EAB86EA0-9472-44F9-8460-7A03ACCD5EB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BF1ClientAPI", "BF1ClientAPI\BF1ClientAPI.csproj", "{EAB86EA0-9472-44F9-8460-7A03ACCD5EB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseConverter", "ChineseConverter\ChineseConverter.csproj", "{42D3554B-F396-4BC7-961C-102EC6C5DE80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EAB86EA0-9472-44F9-8460-7A03ACCD5EB5}.Debug|x64.Build.0 = Debug|x64
 		{EAB86EA0-9472-44F9-8460-7A03ACCD5EB5}.Release|x64.ActiveCfg = Release|x64
 		{EAB86EA0-9472-44F9-8460-7A03ACCD5EB5}.Release|x64.Build.0 = Release|x64
+		{42D3554B-F396-4BC7-961C-102EC6C5DE80}.Debug|x64.ActiveCfg = Debug|x64
+		{42D3554B-F396-4BC7-961C-102EC6C5DE80}.Debug|x64.Build.0 = Debug|x64
+		{42D3554B-F396-4BC7-961C-102EC6C5DE80}.Release|x64.ActiveCfg = Release|x64
+		{42D3554B-F396-4BC7-961C-102EC6C5DE80}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
