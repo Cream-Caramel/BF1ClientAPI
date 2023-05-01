@@ -10,6 +10,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Platforms>x64</Platforms>
         <StartupObject>BF1ClientAPI.Program</StartupObject>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -78,8 +78,8 @@ public static class Scan
         foreach (var each in pattern.Split(' '))
             tempArray.Add(Convert.ToByte(each, 16));
 
-        byte[] patternByteArray = tempArray.ToArray();
-        byte[] localModulebytes = new byte[moduleSize];
+        var patternByteArray = tempArray.ToArray();
+        var localModulebytes = new byte[moduleSize];
         Win32.ReadProcessMemory(Memory.Bf1ProHandle, baseAddress, localModulebytes, moduleSize, out _);
 
         for (int indexAfterBase = 0; indexAfterBase < localModulebytes.Length; indexAfterBase++)
@@ -115,7 +115,7 @@ public static class Scan
     private static bool IsGuidByReg(string strSrc)
     {
         strSrc = strSrc.ToLower();
-        Regex reg = new("^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$", RegexOptions.Compiled);
+        var reg = new Regex("^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$", RegexOptions.Compiled);
         return reg.IsMatch(strSrc);
     }
 }

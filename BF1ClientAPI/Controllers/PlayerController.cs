@@ -29,7 +29,7 @@ public class PlayerController : ControllerBase
     public ActionResult<List<GamePlayer>> GetGamePlayerList()
     {
         var gamePlayerList = Player.GetGamePlayerList();
-        if (gamePlayerList is null)
+        if (gamePlayerList.Count == 0)
             return NotFound();
 
         return Ok(gamePlayerList);

@@ -23,6 +23,19 @@ public static class GameUtil
     }
 
     /// <summary>
+    /// 转为mm:ss字符串格式，传入时间为秒
+    /// </summary>
+    /// <param name="second"></param>
+    /// <returns></returns>
+    public static string GetMMSSStrBySecond(float second)
+    {
+        var mm = second / 60;
+        var ss = second % 60;
+
+        return $"{mm:00}:{ss:00}";
+    }
+
+    /// <summary>
     /// 修复载具分类
     /// </summary>
     /// <param name="name1"></param>

@@ -52,7 +52,7 @@ public static class ClientUtil
     /// <returns></returns>
     public static ModeInfo GetModeInfo(string mode)
     {
-        var result = ModeDB.AllModeInfo.Find(var => var.Id == mode);
+        var result = ModeDB.AllModeInfo.Find(var => var.Mark == mode);
         if (result != null)
             return result;
 
@@ -244,7 +244,7 @@ public static class ClientUtil
     /// </summary>
     /// <param name="map"></param>
     /// <returns></returns>
-    public static string GetTeam1ChsName(string map)
+    public static string GetTeam1Name(string map)
     {
         var mapInfo = GetMapInfo(map);
         if (mapInfo != null)
@@ -258,7 +258,7 @@ public static class ClientUtil
     /// </summary>
     /// <param name="map"></param>
     /// <returns></returns>
-    public static string GetTeam2ChsName(string map)
+    public static string GetTeam2Name(string map)
     {
         var mapInfo = GetMapInfo(map);
         if (mapInfo != null)
