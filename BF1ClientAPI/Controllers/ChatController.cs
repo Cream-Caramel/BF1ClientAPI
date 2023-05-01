@@ -14,11 +14,8 @@ public class ChatController : ControllerBase
     [HttpGet]
     public ActionResult<ChatData> GetLastChatData()
     {
-        var sender = Chat.GetLastChatSender(out long pSender);
-        var content = Chat.GetLastChatContent(out long pContent);
-
-        if (pSender == 0 || pContent == 0)
-            return NotFound();
+        var sender = Chat.GetLastChatSender();
+        var content = Chat.GetLastChatContent();
 
         return Ok(new ChatData()
         {
@@ -32,15 +29,15 @@ public class ChatController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult> SendChatMessage(string message, int delay = 50)
+    public async Task<ActionResult> SendChatMessage(int delay, string message)
     {
-        if (string.IsNullOrWhiteSpace(message))
-            return NoContent();
-
         if (delay <= 0)
             return BadRequest();
 
-        await Chat.SendMessageToGame(message, delay);
+        if (string.IsNullOrWhiteSpace(message))
+            return NoContent();
+
+        await Chat.SendMessage(delay, message);
 
         return Ok();
     }

@@ -9,6 +9,14 @@ public static class Offsets
 
     ////////////////////////////////////////////////////////////////////
 
+    public const int OFFSET_CHAT_MESSAGE_START = 0x180;     // 聊天框起始偏移
+    public const int OFFSET_CHAT_MESSAGE_END = 0x188;       // 聊天框结束偏移
+
+    public const int OFFSET_CHAT_LAST_SENDER = 0x138;       // 最后聊天发送者偏移
+    public const int OFFSET_CHAT_LAST_CONTENT = 0x140;      // 最后聊天发送内容偏移
+
+    ////////////////////////////////////////////////////////////////////
+
     public const int Player_PersonaId = 0x38;       // long
     public const int Player_Name = 0x40;            // string   64
 

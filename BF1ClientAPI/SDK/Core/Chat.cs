@@ -3,33 +3,40 @@
 public static class Chat
 {
     /// <summary>
-    /// 聊天框起始偏移
-    /// </summary>
-    public const int OFFSET_CHAT_MESSAGE_START = 0x180;
-    /// <summary>
-    /// 聊天框结束偏移
-    /// </summary>
-    public const int OFFSET_CHAT_MESSAGE_END = 0x188;
-
-    /// <summary>
-    /// 最后聊天发送者偏移
-    /// </summary>
-    public const int OFFSET_CHAT_LAST_SENDER = 0x138;
-    /// <summary>
-    /// 最后聊天发送内容偏移
-    /// </summary>
-    public const int OFFSET_CHAT_LAST_CONTENT = 0x140;
-
-    /// <summary>
     /// 申请的内存地址
     /// </summary>
     public static IntPtr AllocateMemAddress { get; private set; } = IntPtr.Zero;
+
+    //////////////////////////////////////////////////////////////////
+
+    /// <summary>
+    /// 申请内存空间
+    /// </summary>
+    /// <returns></returns>
+    public static bool AllocateMemory()
+    {
+        if (AllocateMemAddress == IntPtr.Zero)
+            AllocateMemAddress = Win32.VirtualAllocEx(Memory.Bf1ProHandle, IntPtr.Zero, (IntPtr)0x300, AllocationType.Commit, MemoryProtection.ReadWrite);
+
+        return AllocateMemAddress != IntPtr.Zero;
+    }
+
+    /// <summary>
+    /// 释放申请的内存空间
+    /// </summary>
+    public static void FreeMemory()
+    {
+        if (AllocateMemAddress != IntPtr.Zero)
+            Win32.VirtualFreeEx(Memory.Bf1ProHandle, AllocateMemAddress, 0, AllocationType.Reset);
+    }
+
+    //////////////////////////////////////////////////////////////////
 
     /// <summary>
     /// 判断战地1聊天框是否开启，开启返回true，关闭或其他返回false
     /// </summary>
     /// <returns></returns>
-    public static bool GetChatIsOpen()
+    public static bool GetIsOpenChat()
     {
         var address = Memory.Read<long>(Memory.Bf1ProBaseAddress + 0x39F1E50);
         if (!Memory.IsValid(address))
@@ -140,77 +147,73 @@ public static class Chat
     /// 获取最后聊天发送者
     /// </summary>
     /// <returns></returns>
-    public static string GetLastChatSender(out long pSender)
+    public static string GetLastChatSender()
     {
-        pSender = 0;
-        if (ChatListPointer() != 0)
-        {
-            pSender = Memory.Read<long>(ChatListPointer() + OFFSET_CHAT_LAST_SENDER);
-            return Memory.ReadString(Memory.Read<long>(pSender), 32).Replace(":", "");
-        }
+        if (!Memory.IsValid(ChatListPointer()))
+            return string.Empty;
 
-        return string.Empty;
+        var pSender = Memory.Read<long>(ChatListPointer() + Offsets.OFFSET_CHAT_LAST_SENDER);
+        if (!Memory.IsValid(pSender))
+            return string.Empty;
+
+        return Memory.ReadString(Memory.Read<long>(pSender), 32).Replace(":", "");
     }
 
     /// <summary>
     /// 获取最后聊天发送内容
     /// </summary>
     /// <returns></returns>
-    public static string GetLastChatContent(out long pContent)
+    public static string GetLastChatContent()
     {
-        pContent = 0;
-        if (ChatListPointer() != 0)
-        {
-            pContent = Memory.Read<long>(ChatListPointer() + OFFSET_CHAT_LAST_CONTENT);
-            return Memory.ReadString(Memory.Read<long>(pContent), 256);
-        }
+        if (!Memory.IsValid(ChatListPointer()))
+            return string.Empty;
 
-        return string.Empty;
+        var pContent = Memory.Read<long>(ChatListPointer() + Offsets.OFFSET_CHAT_LAST_CONTENT);
+        if (!Memory.IsValid(pContent))
+            return string.Empty;
+
+        return Memory.ReadString(Memory.Read<long>(pContent), 256);
     }
 
     //////////////////////////////////////////////////////////////////
 
     /// <summary>
-    /// 发送消息到战地1游戏
+    /// 发送消息
     /// </summary>
-    /// <param name="message"></param>
     /// <param name="delay"></param>
+    /// <param name="message"></param>
     /// <returns></returns>
-    public static async Task SendMessageToGame(string message, int delay)
+    public static async Task SendMessage(int delay, string message)
     {
+        if (GetIsMinimized())
+            return;
+
         // 将战地1窗口置前
         for (int i = 0; i < 5; i++)
         {
             Memory.SetBF1WindowForeground();
             await Task.Delay(delay);
 
-            if (GetWindowIsTop())
+            if (GetIsOpenChat())
+                await Memory.KeyPress(WinVK.RETURN);
+
+            if (GetIsTopWindow())
                 break;
         }
+
+        if (!GetIsTopWindow())
+            return;
 
         // 模拟聊天框按键
         for (int i = 0; i < 5; i++)
         {
             await Memory.KeyPress(WinVK.J, delay);
 
-            if (GetChatIsOpen())
+            if (GetIsOpenChat())
                 break;
         }
 
-        await SendMessage(message, delay);
-    }
-
-    /// <summary>
-    /// 发送消息
-    /// </summary>
-    /// <param name="message"></param>
-    /// <param name="delay"></param>
-    public static async Task SendMessage(string message, int delay)
-    {
-        if (!GetWindowIsTop())
-            return;
-
-        if (!GetChatIsOpen())
+        if (!GetIsOpenChat())
             return;
 
         // 挂起战地1进程
@@ -219,8 +222,8 @@ public static class Chat
         var length = GetTextLength(message.Trim());
         Memory.WriteString(AllocateMemAddress.ToInt64(), message);
 
-        var startPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_START;
-        var endPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_END;
+        var startPtr = ChatMessagePointer() + Offsets.OFFSET_CHAT_MESSAGE_START;
+        var endPtr = ChatMessagePointer() + Offsets.OFFSET_CHAT_MESSAGE_END;
 
         var oldStartPtr = Memory.Read<long>(startPtr);
         var oldEndPtr = Memory.Read<long>(endPtr);
@@ -232,7 +235,7 @@ public static class Chat
         Memory.ResumeBF1Process();
 
         // 模拟按下回车键
-        await Memory.KeyPress(WinVK.RETURN);
+        await Memory.KeyPress(WinVK.RETURN, delay);
 
         // 挂起战地1进程
         Memory.SuspendBF1Process();
@@ -246,7 +249,7 @@ public static class Chat
     /// 战地1窗口是否在最前
     /// </summary>
     /// <returns></returns>
-    public static bool GetWindowIsTop()
+    public static bool GetIsTopWindow()
     {
         var address = Memory.Read<long>(Offsets.OFFSET_DXRENDERER);
         if (!Memory.IsValid(address))
@@ -260,6 +263,23 @@ public static class Chat
     }
 
     /// <summary>
+    /// 战地1窗口是否最小化
+    /// </summary>
+    /// <returns></returns>
+    public static bool GetIsMinimized()
+    {
+        var address = Memory.Read<long>(Offsets.OFFSET_DXRENDERER);
+        if (!Memory.IsValid(address))
+            return false;
+
+        address = Memory.Read<long>(address + 0x820);
+        if (!Memory.IsValid(address))
+            return false;
+
+        return Memory.Read<byte>(address + 0x60) == 0x01;
+    }
+
+    /// <summary>
     /// 判断战地1输入框字符串长度，中文3，英文1
     /// </summary>
     /// <param name="text">需要判断的字符串</param>
@@ -267,10 +287,10 @@ public static class Chat
     public static int GetTextLength(string text)
     {
         text = text.Trim();
-        if (string.IsNullOrEmpty(text))
+        if (string.IsNullOrWhiteSpace(text))
             return 0;
 
-        int tempLen = 0;
+        var tempLen = 0;
         var bytes = new ASCIIEncoding().GetBytes(text);
         for (int i = 0; i < bytes.Length; i++)
         {
@@ -281,28 +301,5 @@ public static class Chat
         }
 
         return tempLen;
-    }
-
-    //////////////////////////////////////////////////////////////////
-
-    /// <summary>
-    /// 申请内存空间
-    /// </summary>
-    /// <returns></returns>
-    public static bool AllocateMemory()
-    {
-        if (AllocateMemAddress == IntPtr.Zero)
-            AllocateMemAddress = Win32.VirtualAllocEx(Memory.Bf1ProHandle, IntPtr.Zero, (IntPtr)0x300, AllocationType.Commit, MemoryProtection.ReadWrite);
-
-        return AllocateMemAddress != IntPtr.Zero;
-    }
-
-    /// <summary>
-    /// 释放申请的内存空间
-    /// </summary>
-    public static void FreeMemory()
-    {
-        if (AllocateMemAddress != IntPtr.Zero)
-            Win32.VirtualFreeEx(Memory.Bf1ProHandle, AllocateMemAddress, 0, AllocationType.Reset);
     }
 }

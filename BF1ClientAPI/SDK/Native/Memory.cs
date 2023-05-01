@@ -105,6 +105,7 @@ public static class Memory
     /// <param name="delay">延迟，单位毫秒</param>
     public static async Task KeyPress(WinVK winVK, int delay = 50)
     {
+        await Task.Delay(delay);
         Win32.Keybd_Event(winVK, Win32.MapVirtualKey(winVK, 0), 0, 0);
         await Task.Delay(delay);
         Win32.Keybd_Event(winVK, Win32.MapVirtualKey(winVK, 0), 2, 0);
