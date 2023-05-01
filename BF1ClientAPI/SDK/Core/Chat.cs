@@ -26,11 +26,6 @@ public static class Chat
     public static IntPtr AllocateMemAddress { get; private set; } = IntPtr.Zero;
 
     /// <summary>
-    /// 用于线程加锁
-    /// </summary>
-    private static readonly object Obj = new();
-
-    /// <summary>
     /// 判断战地1聊天框是否开启，开启返回true，关闭或其他返回false
     /// </summary>
     /// <returns></returns>
@@ -151,7 +146,7 @@ public static class Chat
         if (ChatListPointer() != 0)
         {
             pSender = Memory.Read<long>(ChatListPointer() + OFFSET_CHAT_LAST_SENDER);
-            return Memory.ReadString(Memory.Read<long>(pSender), 32);
+            return Memory.ReadString(Memory.Read<long>(pSender), 32).Replace(":", "");
         }
 
         return string.Empty;
@@ -176,50 +171,75 @@ public static class Chat
     //////////////////////////////////////////////////////////////////
 
     /// <summary>
-    /// 发送消息到战地1聊天栏
+    /// 发送消息到战地1游戏
     /// </summary>
     /// <param name="message"></param>
-    public static void SendMessageToBF1Chat(string message)
+    /// <param name="delay"></param>
+    /// <returns></returns>
+    public static async Task SendMessageToGame(string message, int delay)
     {
-        lock (Obj)
+        // 将战地1窗口置前
+        for (int i = 0; i < 5; i++)
         {
-            if (!GetWindowIsTop())
-                return;
+            Memory.SetBF1WindowForeground();
+            await Task.Delay(delay);
 
-            if (!GetChatIsOpen())
-                return;
-
-            // 挂起战地1进程
-            Memory.SuspendBF1Process();
-
-            var length = GetTextLength(message.Trim());
-            Memory.WriteString(AllocateMemAddress.ToInt64(), message);
-
-            var startPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_START;
-            var endPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_END;
-
-            var oldStartPtr = Memory.Read<long>(startPtr);
-            var oldEndPtr = Memory.Read<long>(endPtr);
-
-            Memory.Write(startPtr, AllocateMemAddress.ToInt64());
-            Memory.Write(endPtr, AllocateMemAddress.ToInt64() + length);
-
-            // 恢复战地1进程
-            Memory.ResumeBF1Process();
-
-            //////////////////////////////////////////////////////
-
-            Memory.KeyPress(WinVK.RETURN);
-
-            //////////////////////////////////////////////////////
-
-            // 挂起战地1进程
-            Memory.SuspendBF1Process();
-            Memory.Write(startPtr, oldStartPtr);
-            Memory.Write(endPtr, oldEndPtr);
-            // 恢复战地1进程
-            Memory.ResumeBF1Process();
+            if (GetWindowIsTop())
+                break;
         }
+
+        // 模拟聊天框按键
+        for (int i = 0; i < 5; i++)
+        {
+            await Memory.KeyPress(WinVK.J, delay);
+
+            if (GetChatIsOpen())
+                break;
+        }
+
+        await SendMessage(message, delay);
+    }
+
+    /// <summary>
+    /// 发送消息
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="delay"></param>
+    public static async Task SendMessage(string message, int delay)
+    {
+        if (!GetWindowIsTop())
+            return;
+
+        if (!GetChatIsOpen())
+            return;
+
+        // 挂起战地1进程
+        Memory.SuspendBF1Process();
+
+        var length = GetTextLength(message.Trim());
+        Memory.WriteString(AllocateMemAddress.ToInt64(), message);
+
+        var startPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_START;
+        var endPtr = ChatMessagePointer() + OFFSET_CHAT_MESSAGE_END;
+
+        var oldStartPtr = Memory.Read<long>(startPtr);
+        var oldEndPtr = Memory.Read<long>(endPtr);
+
+        Memory.Write(startPtr, AllocateMemAddress.ToInt64());
+        Memory.Write(endPtr, AllocateMemAddress.ToInt64() + length);
+
+        // 恢复战地1进程
+        Memory.ResumeBF1Process();
+
+        // 模拟按下回车键
+        await Memory.KeyPress(WinVK.RETURN);
+
+        // 挂起战地1进程
+        Memory.SuspendBF1Process();
+        Memory.Write(startPtr, oldStartPtr);
+        Memory.Write(endPtr, oldEndPtr);
+        // 恢复战地1进程
+        Memory.ResumeBF1Process();
     }
 
     /// <summary>

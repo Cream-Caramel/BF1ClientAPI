@@ -63,8 +63,8 @@ public class Program
             cros.AddPolicy("AllowAllOrigins", policy =>
             {
                 policy.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowAnyMethod();
             });
         });
 

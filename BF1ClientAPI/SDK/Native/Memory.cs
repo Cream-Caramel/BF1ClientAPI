@@ -103,12 +103,12 @@ public static class Memory
     /// </summary>
     /// <param name="winVK">虚拟按键</param>
     /// <param name="delay">延迟，单位毫秒</param>
-    public static void KeyPress(WinVK winVK, int delay = 50)
+    public static async Task KeyPress(WinVK winVK, int delay = 50)
     {
         Win32.Keybd_Event(winVK, Win32.MapVirtualKey(winVK, 0), 0, 0);
-        Thread.Sleep(delay);
+        await Task.Delay(delay);
         Win32.Keybd_Event(winVK, Win32.MapVirtualKey(winVK, 0), 2, 0);
-        Thread.Sleep(delay);
+        await Task.Delay(delay);
     }
 
     /// <summary>
