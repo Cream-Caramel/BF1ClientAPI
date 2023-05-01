@@ -31,8 +31,8 @@ public class ChatController : ControllerBase
     /// 发送游戏聊天消息
     /// </summary>
     /// <returns></returns>
-    [HttpGet]
-    public async Task<ActionResult> SendChatMessage(int delay, string message)
+    [HttpPost]
+    public async Task<ActionResult> SendChatMessage([FromQuery] int delay, [FromBody] string message)
     {
         if (delay <= 0)
             return BadRequest();
