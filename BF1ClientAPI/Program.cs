@@ -9,7 +9,7 @@ public class Program
 
     public static void Main(string[] args)
     {
-        Console.Title = "战地1客户端API";
+        Console.Title = "战地1客户端API | DS By CrazyZhang666";
 
         if (!Memory.Initialize())
         {
@@ -45,7 +45,7 @@ public class Program
         Console.WriteLine("----------------------------");
         Console.WriteLine();
 
-        Console.WriteLine("接口文档：http://127.0.0.1:10086/swagger/index.html");
+        Console.WriteLine($"接口文档：{Host}/swagger/index.html");
         Console.WriteLine("按 Ctrl+C 键结束程序");
         Console.WriteLine();
 
@@ -83,7 +83,7 @@ public class Program
         app.UseAuthorization();
         app.MapControllers();
 
-        app.Run(Host);
+        app.Run();
     }
 
     private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
