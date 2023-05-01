@@ -83,7 +83,7 @@ public class Program
         app.UseAuthorization();
         app.MapControllers();
 
-        app.Run();
+        app.Run(Host);
     }
 
     private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
