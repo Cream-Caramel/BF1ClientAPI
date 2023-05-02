@@ -87,7 +87,7 @@ public class PlayerController : ControllerBase
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器队伍1中玩家数据
+    /// 获取战地1当前进入服务器队伍1中玩家数据，已按照得分顺序排序
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -122,7 +122,7 @@ public class PlayerController : ControllerBase
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器队伍2中玩家数据
+    /// 获取战地1当前进入服务器队伍2中玩家数据，已按照得分顺序排序
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]

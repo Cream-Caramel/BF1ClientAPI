@@ -17,32 +17,34 @@ public class ServerController : ControllerBase
     /// <returns></returns>
     /// <remarks>
     /// 获取战地1当前进入服务器的服务器相关数据
+    /// 
+    /// 征服模式可以获取服务器时间和得分信息，由于是弱指针，有较低概率获取失败
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
     public ActionResult<ServerData> GetServerData()
     {
-        var serverData = new ServerData();
+        var serverData = new ServerData
+        {
+            // 服务器名称
+            Name = Server.GetServerName(),
+            // 服务器数字Id
+            GameId = Server.GetGameId(),
+            // 服务器时间
+            Time = Server.GetServerTime(),
 
-        // 服务器名称
-        serverData.Name = Server.GetServerName();
-        // 服务器数字Id
-        serverData.GameId = Server.GetGameId();
-        // 服务器时间
-        serverData.Time = Server.GetServerTime();
+            // 服务器游戏模式
+            GameMode = Server.GetGameMode(),
+            // 服务器地图名称
+            MapName = Server.GetMapName()
+        };
+
         // 服务器时间 - 字符串
         serverData.GameTime = GameUtil.GetMMSSStrBySecond(serverData.Time);
-
-        // 服务器游戏模式
-        serverData.GameMode = Server.GetGameMode();
         // 服务器游戏模式中文名称
         serverData.GameMode2 = ClientUtil.GetGameMode(serverData.GameMode);
-
-        // 服务器地图名称
-        serverData.MapName = Server.GetMapName();
         // 服务器地图中文名称
         serverData.MapName2 = ClientUtil.GetMapChsName(serverData.MapName);
-
         // 服务器地图预览图
         serverData.MapImage = ClientUtil.GetMapImage(serverData.MapName);
 

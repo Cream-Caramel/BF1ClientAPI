@@ -20,7 +20,7 @@ public class ChatController : ControllerBase
     /// <remarks>
     /// 获取当前服务器最后发言的玩家Id和发言内容，由于是弱指针，有概率获取不到或者内容乱码
     /// 
-    /// 使用过程中建议定时获取最后发言，并做好内容记录
+    /// 使用过程中建议定时获取最后发言（比如每200ms获取一次），并做好内容记录和去重，防止数据丢失
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -43,7 +43,7 @@ public class ChatController : ControllerBase
     /// <remarks>
     /// 发送自定义消息内容（最大256字符，约85个汉字），输入法需要是英文状态
     /// 
-    /// delay参数为发送延迟，单位毫秒，一般设置50即可
+    /// delay参数为发送延迟，单位毫秒，一般设置50或100ms即可
     /// </remarks>
     [HttpPost("{delay}")]
     [Produces("application/json")]

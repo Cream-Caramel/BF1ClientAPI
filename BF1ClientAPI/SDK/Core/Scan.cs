@@ -84,7 +84,7 @@ public static class Scan
 
         for (int indexAfterBase = 0; indexAfterBase < localModulebytes.Length; indexAfterBase++)
         {
-            bool noMatch = false;
+            var noMatch = false;
 
             if (localModulebytes[indexAfterBase] != patternByteArray[0])
                 continue;
