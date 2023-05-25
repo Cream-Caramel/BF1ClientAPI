@@ -5,48 +5,37 @@ namespace BF1ClientAPI;
 
 public class Program
 {
-    public const string Host = "http://127.0.0.1:10086";
+    public const string Host = "http://0.0.0.0:10086";
 
     public static void Main(string[] args)
     {
-        Console.Title = "战地1客户端API | DS By CrazyZhang666";
+        Console.Title = "BF1ClientAPI | By CrazyZhang666";
 
         if (!Memory.Initialize())
         {
-            Console.WriteLine("战地1客户端API初始化失败，程序终止");
+            Console.WriteLine("Battlefield 1 client API initialization failed, program terminated");
             Console.WriteLine();
 
-            Console.WriteLine("按任意键关闭此窗口...");
-            Console.ReadKey();
+            Console.WriteLine("Press any key to close this window...");
+            Console.Read();
 
             return;
         }
 
-        if (!Chat.AllocateMemory())
-        {
-            Console.WriteLine("申请中文聊天内存空间失败，程序终止");
-            Console.WriteLine();
-
-            Console.WriteLine("按任意键关闭此窗口...");
-            Console.ReadKey();
-
-            return;
-        }
-
-        Console.WriteLine("战地1客户端API初始化成功！");
+        Console.WriteLine("Battlefield 1 client API initialization successful!");
         Console.WriteLine();
 
         Console.WriteLine("----------------------------");
-        Console.WriteLine($"进程Id: \t{Memory.Bf1ProId}");
-        Console.WriteLine($"进程句柄: \t{Memory.Bf1ProHandle}");
-        Console.WriteLine($"主模块基址: \t0x{Memory.Bf1ProBaseAddress:X}");
-        Console.WriteLine($"窗口句柄: \t{Memory.Bf1WinHandle}");
-        Console.WriteLine($"申请空间地址: \t0x{Chat.AllocateMemAddress:x}");
+        Console.WriteLine($"ProcessId: \t{Memory.Bf1ProId}");
+        Console.WriteLine($"ProcessHandle: \t{Memory.Bf1ProHandle}");
+        Console.WriteLine($"BaseAddress址: \t0x{Memory.Bf1ProBaseAddress:X}");
+        Console.WriteLine($"WindowHandle: \t{Memory.Bf1WinHandle}");
+        Console.WriteLine($"MemAddress: \t0x{Chat.AllocateMemAddress:x}");
         Console.WriteLine("----------------------------");
         Console.WriteLine();
 
-        Console.WriteLine($"接口文档：{Host}/index.html");
-        Console.WriteLine("按 Ctrl+C 键结束程序");
+        Console.WriteLine($"Docs @ {Host}/index.html");
+        Console.WriteLine("Press Ctrl+C to end the program");
         Console.WriteLine();
 
         ////////////////////////////////////////////////////////
@@ -75,15 +64,15 @@ public class Program
             options.SwaggerDoc("V1", new OpenApiInfo
             {
                 Version = "V1",
-                Title = "战地1客户端API",
-                Description = "从战地1客户端内存中获取数据，方便其他语言调用，玩家可根据此API自定义开发服管工具",
+                Title = "BF1ClientAPI",
+                Description = "Obtain data from the memory of the Battlefield 1 client, which is convenient for calling in other languages. Players can customize and develop server management tools based on this API",
                 Contact = new OpenApiContact()
                 {
-                    Name = "GitHub地址",
+                    Name = "GitHub锟経RL",
                     Url = new Uri("https://github.com/CrazyZhang666/BF1ClientAPI")
                 }
             });
-            // 显示文档注释
+            // doc comments
             var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), true);
         });
@@ -95,7 +84,7 @@ public class Program
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/V1/swagger.json", "API版本 V1");
+            options.SwaggerEndpoint("/swagger/V1/swagger.json", "API锟芥本 V1");
             options.RoutePrefix = string.Empty;
         });
 
@@ -108,9 +97,7 @@ public class Program
 
     private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
     {
-        // 释放中文聊天指针内存
-        Chat.FreeMemory();
-        // 释放内存模块相关资源
+        // Release memory
         Memory.UnInitialize();
     }
 }

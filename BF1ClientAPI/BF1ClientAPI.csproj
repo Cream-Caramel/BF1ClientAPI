@@ -29,11 +29,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
 </Project>

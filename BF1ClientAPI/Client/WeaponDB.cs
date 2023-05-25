@@ -25,17 +25,17 @@ public static class WeaponDB
         new() { Guid="B9333E7C-3D7D-4147-A569-9FC9BB2B4F5D", Kind="公用配枪", Id="U_SingleActionArmy", Name="维和左轮 Peacekeeper", Kick="Peacekeeper", Image="Colt_SAA-ef15294c.png" },
         new() { Guid="F7CED576-7629-402A-8598-4A4998C02E0A", Kind="公用配枪", Id="U_M1911_Preorder_Triforce", Name="步兵小子 M1911", Kick="M1911 BBXZ", Image="Colt1911-ed324bf1.png" },
         
-        // 手榴弹
-        new() { Guid="F0B75644-5B3F-45CD-9E42-9B67F3D4D37F", Kind="手榴弹", Id="U_GermanStick", Name="破片手榴弹", Kick="German Stick", Image="GadgetFragmented-8c15152e.png" },
-        new() { Guid="F0B75644-5B3F-45CD-9E42-9B67F3D4D37F", Kind="手榴弹", Id="U_FragGrenade", Name="棒式手榴弹", Kick="Frag Grenade", Image="GadgetFragmented-8c15152e.png" },
-        new() { Guid="EE6AC80E-FFDF-4E5A-923D-209CE9B86BF4", Kind="手榴弹", Id="U_GasGrenade", Name="毒气手榴弹", Kick="Gas Grenade", Image="GadgetGas-2bee4386.png" },
-        new() { Guid="F9A8C36F-F5B6-4946-B3B9-F5923564CD51", Kind="手榴弹", Id="U_ImpactGrenade", Name="冲击手榴弹", Kick="Impact Grenade", Image="GadgetImpact-f0c7f39e.png" },
-        new() { Guid="8219207A-41E6-4ED2-A3E8-9690752EC40C", Kind="手榴弹", Id="U_Incendiary", Name="燃烧手榴弹", Kick="Incendiary", Image="GadgetIncindiary-68d49a3a.png" },
-        new() { Guid="67B5683D-D897-4881-BB86-DACB9947264E", Kind="手榴弹", Id="U_MiniGrenade", Name="小型手榴弹", Kick="Mini Grenade", Image="GadgetMiniOffensive-2d19e08a.png" },
-        new() { Guid="04CDC06B-F4B6-4696-BE9C-08E1D0D36347", Kind="手榴弹", Id="U_SmokeGrenade", Name="烟雾手榴弹", Kick="Smoke Grenade", Image="GadgetSmoke-af84f434.png" },
-        new() { Guid="D4A99456-2ABA-4376-9870-200FD24C5D45", Kind="手榴弹", Id="U_Grenade_AT", Name="轻型反坦克手榴弹", Kick="Grenade AT", Image="GadgetTrooperATGrenade-a6575030.png" },
-        new() { Guid="55D01566-4322-4EAE-AD13-9DDAF2C2F399", Kind="手榴弹", Id="U_ImprovisedGrenade", Name="土制手榴弹", Kick="Imsp Grenade", Image="ImprovisedGrenade-fea87071.png" },
-        new() { Guid="DD1BBA84-A6AB-4A66-986F-2B2556F6E7B1", Kind="手榴弹", Id="U_RussianBox", Name="俄罗斯标准手榴弹", Kick="Russian Box", Image="RU_Grenade-a7e29a54.png" },
+        // Grenades
+        new() { Guid="F0B75644-5B3F-45CD-9E42-9B67F3D4D37F", Kind="Grenade", Id="U_GermanStick", Name="破片手榴弹", Kick="German Stick", Image="GadgetFragmented-8c15152e.png" },
+        new() { Guid="F0B75644-5B3F-45CD-9E42-9B67F3D4D37F", Kind="Grenade", Id="U_FragGrenade", Name="棒式手榴弹", Kick="Frag Grenade", Image="GadgetFragmented-8c15152e.png" },
+        new() { Guid="EE6AC80E-FFDF-4E5A-923D-209CE9B86BF4", Kind="Grenade", Id="U_GasGrenade", Name="毒气手榴弹", Kick="Gas Grenade", Image="GadgetGas-2bee4386.png" },
+        new() { Guid="F9A8C36F-F5B6-4946-B3B9-F5923564CD51", Kind="Grenade", Id="U_ImpactGrenade", Name="冲击手榴弹", Kick="Impact Grenade", Image="GadgetImpact-f0c7f39e.png" },
+        new() { Guid="8219207A-41E6-4ED2-A3E8-9690752EC40C", Kind="Grenade", Id="U_Incendiary", Name="燃烧手榴弹", Kick="Incendiary", Image="GadgetIncindiary-68d49a3a.png" },
+        new() { Guid="67B5683D-D897-4881-BB86-DACB9947264E", Kind="Grenade", Id="U_MiniGrenade", Name="小型手榴弹", Kick="Mini Grenade", Image="GadgetMiniOffensive-2d19e08a.png" },
+        new() { Guid="04CDC06B-F4B6-4696-BE9C-08E1D0D36347", Kind="Grenade", Id="U_SmokeGrenade", Name="烟雾手榴弹", Kick="Smoke Grenade", Image="GadgetSmoke-af84f434.png" },
+        new() { Guid="D4A99456-2ABA-4376-9870-200FD24C5D45", Kind="Grenade", Id="U_Grenade_AT", Name="轻型反坦克手榴弹", Kick="Grenade AT", Image="GadgetTrooperATGrenade-a6575030.png" },
+        new() { Guid="55D01566-4322-4EAE-AD13-9DDAF2C2F399", Kind="Grenade", Id="U_ImprovisedGrenade", Name="土制手榴弹", Kick="Imsp Grenade", Image="ImprovisedGrenade-fea87071.png" },
+        new() { Guid="DD1BBA84-A6AB-4A66-986F-2B2556F6E7B1", Kind="Grenade", Id="U_RussianBox", Name="俄罗斯标准手榴弹", Kick="Russian Box", Image="RU_Grenade-a7e29a54.png" },
 
         ////////////////////////////////// 突击兵 Assault //////////////////////////////////
 
