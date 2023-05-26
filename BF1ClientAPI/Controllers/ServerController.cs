@@ -5,20 +5,20 @@ using BF1ClientAPI.Models;
 namespace BF1ClientAPI.Controllers;
 
 /// <summary>
-/// 服务器
+/// Servers
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class ServerController : ControllerBase
 {
     /// <summary>
-    /// 获取当前服务器数据
+    /// Get current server data
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器的服务器相关数据
+    /// Get server related data for Battlefield 1 currently joined the server
     /// 
-    /// 征服模式可以获取服务器时间和得分信息，由于是弱指针，有较低概率获取失败
+    /// Conquest mode can get server time and score information, due to weak pointers, there is a low probability of failure to get them.
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -26,42 +26,41 @@ public class ServerController : ControllerBase
     {
         var serverData = new ServerData
         {
-            // 服务器名称
+            // ServerName
             Name = Server.GetServerName(),
-            // 服务器数字Id
+            // GameId
             GameId = Server.GetGameId(),
-            // 服务器时间
+            // ServerTime
             Time = Server.GetServerTime(),
-
-            // 服务器游戏模式
+            // GameMode
             GameMode = Server.GetGameMode(),
-            // 服务器地图名称
+            // MapName
             MapName = Server.GetMapName()
         };
 
-        // 服务器时间 - 字符串
+        // Server Time - String
         serverData.GameTime = GameUtil.GetMMSSStrBySecond(serverData.Time);
-        // 服务器游戏模式中文名称
+        // Pretty Game Mode Name
         serverData.GameMode2 = ClientUtil.GetGameMode(serverData.GameMode);
-        // 服务器地图中文名称
+        // Pretty Map Name
         serverData.MapName2 = ClientUtil.GetMapChsName(serverData.MapName);
-        // 服务器地图预览图
+        // Map Preview
         serverData.MapImage = ClientUtil.GetMapImage(serverData.MapName);
 
-        // 队伍1
+        // Team 1
         serverData.Team1.Name = ClientUtil.GetTeam1Name(serverData.MapName);
         serverData.Team1.Image = ClientUtil.GetTeam1Image(serverData.MapName);
-        // 队伍1分数
+        // Team 1 Score
         serverData.Team1.MaxScore = Server.GetServerMaxScore();
         serverData.Team1.AllScore = Server.GetTeamScore(1);
         serverData.Team1.ScoreKill = Server.GetTeamKillScore(1);
         serverData.Team1.ScoreFlag = Server.GetTeamFlagScore(1);
 
-        // 队伍2
+        // Team 2
         serverData.Team2.Name = ClientUtil.GetTeam2Name(serverData.MapName);
         serverData.Team2.Image = ClientUtil.GetTeam2Image(serverData.MapName);
         serverData.Team2.MaxScore = Server.GetServerMaxScore();
-        // 队伍2分数
+        // Team 2 Score
         serverData.Team2.AllScore = Server.GetTeamScore(2);
         serverData.Team2.ScoreKill = Server.GetTeamKillScore(2);
         serverData.Team2.ScoreFlag = Server.GetTeamFlagScore(2);

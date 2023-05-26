@@ -3,20 +3,20 @@
 namespace BF1ClientAPI.Controllers;
 
 /// <summary>
-/// 权限
+/// Authentication
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class AuthController : ControllerBase
 {
     /// <summary>
-    /// 获取本地内存SessionId
+    /// Local Memory SessionId
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 从内存中扫描当前登录用户的SessionId，如果未发现SessionId，请刷新游戏内服务器列表后重试
+    /// Scan the SessionId of the currently logged-in user from memory, if the SessionId is not found, please refresh the in-game server list and try again
     /// 
-    /// 获取成功后返回Guid类型字符串
+    /// Returns the Guid type string after successful acquisition
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]

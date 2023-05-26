@@ -7,20 +7,20 @@ using ChineseConverter;
 namespace BF1ClientAPI.Controllers;
 
 /// <summary>
-/// 聊天
+/// Chat
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class ChatController : ControllerBase
 {
     /// <summary>
-    /// 获取服务器最后发言消息
+    /// Get the last chat message from the server
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取当前服务器最后发言的玩家Id和发言内容，由于是弱指针，有概率获取不到或者内容乱码
+    /// Get the last chat text message posted in the server and the senders name, because it is a weak pointer, there is a probability of not getting it or the being garbled
     /// 
-    /// 使用过程中建议定时获取最后发言（比如每200ms获取一次），并做好内容记录和去重，防止数据丢失
+    /// During use, it is recommended to obtain the last speech at regular intervals (for example, every 200ms), and do a good job of recording and de-duplicating the content to prevent data loss.
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -37,13 +37,13 @@ public class ChatController : ControllerBase
     }
 
     /// <summary>
-    /// 发送聊天消息到服务器
+    /// Send a chat message to the server
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 发送自定义消息内容（最大256字符，约85个汉字），输入法需要是英文状态
+    /// Send custom message content (max 256 characters), input method needs to be in English
     /// 
-    /// delay参数为发送延迟，单位毫秒，一般设置50或100ms即可
+    /// delay (ms) set between 50 or 100 ms
     /// </remarks>
     [HttpPost("{delay}")]
     [Produces("application/json")]
