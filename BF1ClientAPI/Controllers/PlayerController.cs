@@ -4,18 +4,18 @@ using BF1ClientAPI.Models;
 namespace BF1ClientAPI.Controllers;
 
 /// <summary>
-/// 玩家
+/// Player
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class PlayerController : ControllerBase
 {
     /// <summary>
-    /// 获取自己信息
+    /// Get information about yourself
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1自己账号的相关数据
+    /// Get data about your own account in Battlefield 1
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -29,11 +29,11 @@ public class PlayerController : ControllerBase
     }
 
     /// <summary>
-    /// 获取游戏内玩家列表信息
+    /// Get in-game player list information
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器全部玩家数据
+    /// Get the data of all players currently entering the server for Battlefield 1
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -50,11 +50,11 @@ public class PlayerController : ControllerBase
     }
 
     /// <summary>
-    /// 获取游戏内队伍0玩家列表信息
+    /// Get in-game team 0 player list information
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器观战和载入中玩家数据
+    /// Get Battlefield 1 data for players currently in spectator and loading screen 
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -83,11 +83,11 @@ public class PlayerController : ControllerBase
     }
 
     /// <summary>
-    /// 获取游戏内队伍1玩家列表信息
+    /// Get in-game team 1 player list information
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器队伍1中玩家数据，已按照得分顺序排序
+    /// Get Battlefield 1 current entry server team 1 in the player data, has been sorted by score order
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]
@@ -118,11 +118,11 @@ public class PlayerController : ControllerBase
     }
 
     /// <summary>
-    /// 获取游戏内队伍2玩家列表信息
+    /// Get in-game team 2 player list information
     /// </summary>
     /// <returns></returns>
     /// <remarks>
-    /// 获取战地1当前进入服务器队伍2中玩家数据，已按照得分顺序排序
+    /// Get Battlefield 1 current entry server team 2 in the player data, has been sorted according to the score order
     /// </remarks>
     [HttpGet]
     [Produces("application/json")]

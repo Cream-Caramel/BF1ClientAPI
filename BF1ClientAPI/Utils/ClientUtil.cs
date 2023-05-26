@@ -209,7 +209,7 @@ public static class ClientUtil
     ///////////////////////////////////////////////
 
     /// <summary>
-    /// 获取小队的中文名称
+    /// Translate to English squad name
     /// </summary>
     /// <param name="squadId"></param>
     /// <returns></returns>
@@ -217,22 +217,22 @@ public static class ClientUtil
     {
         return squadId switch
         {
-            0 => "无",
-            1 => "苹果",
-            2 => "奶油",
-            3 => "查理",
-            4 => "达夫",
-            5 => "爱德华",
-            6 => "弗莱迪",
-            7 => "乔治",
-            8 => "哈利",
-            9 => "墨水",
-            10 => "强尼",
-            11 => "国王",
-            12 => "伦敦",
-            13 => "猿猴",
-            14 => "疯子",
-            15 => "橘子",
+            0 => "None",
+            1 => "Apples",
+            2 => "Butter",
+            3 => "Charlie",
+            4 => "Duff",
+            5 => "Edward",
+            6 => "Freddy",
+            7 => "George",
+            8 => "Harry",
+            9 => "Ink",
+            10 => "Johnnie",
+            11 => "King",
+            12 => "London",
+            13 => "Monkey",
+            14 => "Nuts",
+            15 => "Orange",
             _ => squadId.ToString(),
         };
     }

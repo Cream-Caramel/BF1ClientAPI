@@ -22,6 +22,17 @@ public class Program
             return;
         }
 
+        if (!Chat.AllocateMemory())
+        {
+            Console.WriteLine("Request for Chinese chat memory space failed, program terminated");
+            Console.WriteLine();
+
+            Console.WriteLine("Press any key to close this window...");
+            Console.ReadKey();
+
+            return;
+        }
+
         Console.WriteLine("Battlefield 1 client API initialization successful!");
         Console.WriteLine();
 
@@ -68,7 +79,7 @@ public class Program
                 Description = "Obtain data from the memory of the Battlefield 1 client, which is convenient for calling in other languages. Players can customize and develop server management tools based on this API",
                 Contact = new OpenApiContact()
                 {
-                    Name = "GitHub�URL",
+                    Name = "GitHub-URL",
                     Url = new Uri("https://github.com/CrazyZhang666/BF1ClientAPI")
                 }
             });
@@ -84,7 +95,7 @@ public class Program
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/V1/swagger.json", "API�汾 V1");
+            options.SwaggerEndpoint("/swagger/V1/swagger.json", "API V1");
             options.RoutePrefix = string.Empty;
         });
 
@@ -98,6 +109,7 @@ public class Program
     private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
     {
         // Release memory
+        Chat.FreeMemory();
         Memory.UnInitialize();
     }
 }

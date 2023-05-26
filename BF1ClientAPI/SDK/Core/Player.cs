@@ -165,7 +165,7 @@ public static class Player
             }
 
         NO_WEAPON:
-            // 过滤重复玩家，并填充数据
+            // Filter duplicate players and populate data
             var index = _playerList.FindIndex(val => val.PersonaId == personaId);
             if (index == -1)
             {
@@ -187,29 +187,29 @@ public static class Player
                     KitImage = ClientUtil.GetPlayerKitImage(kit, true),
                     KitImage2 = ClientUtil.GetPlayerKitImage(kit),
 
-                    // 0 主要武器
-                    WeaponS0 = PlayerUtil.GetPlayerWeapon(_weaponSlot[0], "主要武器"),
-                    // 1 配枪
-                    WeaponS1 = PlayerUtil.GetPlayerWeapon(_weaponSlot[1], "配枪"),
-                    // 2 配备一
-                    WeaponS2 = PlayerUtil.GetPlayerWeapon(_weaponSlot[2], "配备一"),
-                    // 3 特殊
-                    WeaponS3 = PlayerUtil.GetPlayerWeapon(_weaponSlot[3], "特殊"),
-                    // 4 V键
-                    WeaponS4 = PlayerUtil.GetPlayerWeapon(_weaponSlot[4], "V键"),
-                    // 5 配备二
-                    WeaponS5 = PlayerUtil.GetPlayerWeapon(_weaponSlot[5], "配备二"),
-                    // 6 手榴弹
-                    WeaponS6 = PlayerUtil.GetPlayerWeapon(_weaponSlot[6], "手榴弹"),
-                    // 7 近战
-                    WeaponS7 = PlayerUtil.GetPlayerWeapon(_weaponSlot[7], "近战"),
+                    // 0 Main Weapon
+                    WeaponS0 = PlayerUtil.GetPlayerWeapon(_weaponSlot[0], "MAIN"),
+                    // 1 Sidearm Weapon
+                    WeaponS1 = PlayerUtil.GetPlayerWeapon(_weaponSlot[1], "SIDEARM"),
+                    // 2 First Gadget Slot
+                    WeaponS2 = PlayerUtil.GetPlayerWeapon(_weaponSlot[2], "GADGET1"),
+                    // 3 Mask Slot (Gas)
+                    WeaponS3 = PlayerUtil.GetPlayerWeapon(_weaponSlot[3], "MASK"),
+                    // 4 V Type Selector Fire
+                    WeaponS4 = PlayerUtil.GetPlayerWeapon(_weaponSlot[4], "VTYPE"),
+                    // 5 Second Gadget Slot
+                    WeaponS5 = PlayerUtil.GetPlayerWeapon(_weaponSlot[5], "GADGET2"),
+                    // 6 Grenade
+                    WeaponS6 = PlayerUtil.GetPlayerWeapon(_weaponSlot[6], "GRENADE"),
+                    // 7 Melee Weapon
+                    WeaponS7 = PlayerUtil.GetPlayerWeapon(_weaponSlot[7], "MELEE"),
                 });
             }
         }
 
-        ////////////////////// 得分板数据 //////////////////////
+        ////////////////////// Scoreboard Data //////////////////////
 
-        // 获取得分板指针（链表）
+        // Get scoreboard pointer (chain table)
         var pClientScoreBA = Memory.Read<long>(Memory.Bf1ProBaseAddress + 0x39EB8D8);
         pClientScoreBA = Memory.Read<long>(pClientScoreBA + 0x68);
 
@@ -220,14 +220,14 @@ public static class Player
             if (!Memory.IsValid(pClientScoreOffset))
                 continue;
 
-            // 获取得分板数据
+            // Get scoreboard data
             var mark = Memory.Read<byte>(pClientScoreOffset + 0x300);
             var rank = Memory.Read<int>(pClientScoreOffset + 0x304);
             var kill = Memory.Read<int>(pClientScoreOffset + 0x308);
             var dead = Memory.Read<int>(pClientScoreOffset + 0x30C);
             var score = Memory.Read<int>(pClientScoreOffset + 0x314);
 
-            // 填充得分板数据
+            // Populate scoreboard data
             var player = _playerList.Find(val => val.Mark == mark);
             if (player != null)
             {
