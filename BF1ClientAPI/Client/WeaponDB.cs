@@ -5,25 +5,25 @@ namespace BF1ClientAPI.Client;
 public static class WeaponDB
 {
     /// <summary>
-    /// 全部武器信息，ShortName不超过16个字符
+    /// All weapon information, ShortName no more than 16 characters
     /// </summary>
     public readonly static List<WeaponInfo> AllWeaponInfo = new()
     {
-        // 公用配枪
-        new() { Guid="3CE86D7C-9951-4B25-9FD6-A97CA94F4A20", Kind="公用配枪", Id="U_M1911", Name="M1911", Kick="M1911", Image="Colt1911-ed324bf1.png" },
-        new() { Guid="009736C2-B237-49AE-9DD1-E77AF7771FF2", Kind="公用配枪", Id="U_LugerP08", Name="P08 手枪", Kick="P08", Image="LugerP08-7f07aa2d.png" },
-        new() { Guid="A666D907-0F72-4641-B43A-6AA756FFBC03", Kind="公用配枪", Id="U_FN1903", Name="Mle 1903", Kick="M1903", Image="Mle1903-a0fe1ec3.png" },
-        new() { Guid="4DD1FAD2-1CF1-496C-BE29-BDAEBC931D74", Kind="公用配枪", Id="U_BorchardtC93", Name="C93", Kick="C93", Image="Mle1903-a0fe1ec3.png" },
-        new() { Guid="87643E53-CD17-FFC4-167B-AA72301A323A", Kind="公用配枪", Id="U_SmithWesson", Name="3 号左轮手枪", Kick="No3 Rev", Image="SmithWesson-e26b4f24.png" },
-        new() { Guid="33F9105C-40C7-3980-7982-ADD4B9F6311A", Kind="公用配枪", Id="U_Kolibri", Name="Kolibri", Kick="Kolibri", Image="KolibriPistol-ec20b160.png" },
-        new() { Guid="64503392-4DDF-435D-8ABA-22730383E073", Kind="公用配枪", Id="U_NagantM1895", Name="纳甘左轮手枪", Kick="Nagant Rev", Image="NagantM1895-05035f4a.png" },
-        new() { Guid="84AF0AF5-D981-48BE-8665-CC24A278DA6E", Kind="公用配枪", Id="U_Obrez", Name="Obrez 手枪", Kick="Obrez", Image="ObrezPistol-0c86b6ed.png" },
-        new() { Guid="8680EFC0-CA02-43E0-8CA2-591FB279DD95", Kind="公用配枪", Id="U_Webley_Mk6", Name="Mk VI 左轮手枪", Kick="Mk VI", Image="Webley_MK6-da81b474.png" },
-        new() { Guid="AF3F421B-F68B-401D-94B4-B982EE6C8A91", Kind="公用配枪", Id="U_M1911_Preorder_Hellfighter", Name="地狱战士 M1911", Kick="M1911 HF", Image="Colt1911-ed324bf1.png" },
-        new() { Guid="B97A8C29-A567-437F-9B6C-9E1E8FD86BF9", Kind="公用配枪", Id="U_LugerP08_Wep_Preorder", Name="红男爵的 P08", Kick="P08 HNJ", Image="LugerP08-7f07aa2d.png" },
-        new() { Guid="5962340E-AED8-4B93-A10E-D7C91FFD2460", Kind="公用配枪", Id="U_M1911_Suppressed", Name="M1911（消音器）", Kick="M1911 XYQ", Image="M1911Silencer-d6c0e687.png" },
-        new() { Guid="B9333E7C-3D7D-4147-A569-9FC9BB2B4F5D", Kind="公用配枪", Id="U_SingleActionArmy", Name="维和左轮 Peacekeeper", Kick="Peacekeeper", Image="Colt_SAA-ef15294c.png" },
-        new() { Guid="F7CED576-7629-402A-8598-4A4998C02E0A", Kind="公用配枪", Id="U_M1911_Preorder_Triforce", Name="步兵小子 M1911", Kick="M1911 BBXZ", Image="Colt1911-ed324bf1.png" },
+        // Pistols
+        new() { Guid="3CE86D7C-9951-4B25-9FD6-A97CA94F4A20", Kind="PISTOL", Id="U_M1911", Name="M1911", Kick="M1911", Image="Colt1911-ed324bf1.png" },
+        new() { Guid="009736C2-B237-49AE-9DD1-E77AF7771FF2", Kind="PISTOL", Id="U_LugerP08", Name="P08 Pistol", Kick="P08", Image="LugerP08-7f07aa2d.png" },
+        new() { Guid="A666D907-0F72-4641-B43A-6AA756FFBC03", Kind="PISTOL", Id="U_FN1903", Name="Mle 1903", Kick="M1903", Image="Mle1903-a0fe1ec3.png" },
+        new() { Guid="4DD1FAD2-1CF1-496C-BE29-BDAEBC931D74", Kind="PISTOL", Id="U_BorchardtC93", Name="C93", Kick="C93", Image="Mle1903-a0fe1ec3.png" },
+        new() { Guid="87643E53-CD17-FFC4-167B-AA72301A323A", Kind="PISTOL", Id="U_SmithWesson", Name="No. 3 Revolver", Kick="No3 Rev", Image="SmithWesson-e26b4f24.png" },
+        new() { Guid="33F9105C-40C7-3980-7982-ADD4B9F6311A", Kind="PISTOL", Id="U_Kolibri", Name="Kolibri", Kick="Kolibri", Image="KolibriPistol-ec20b160.png" },
+        new() { Guid="64503392-4DDF-435D-8ABA-22730383E073", Kind="PISTOL", Id="U_NagantM1895", Name="Nagant Revolver", Kick="Nagant Rev", Image="NagantM1895-05035f4a.png" },
+        new() { Guid="84AF0AF5-D981-48BE-8665-CC24A278DA6E", Kind="PISTOL", Id="U_Obrez", Name="Obrez Pistol", Kick="Obrez", Image="ObrezPistol-0c86b6ed.png" },
+        new() { Guid="8680EFC0-CA02-43E0-8CA2-591FB279DD95", Kind="PISTOL", Id="U_Webley_Mk6", Name="Revolver MkVI", Kick="Mk VI", Image="Webley_MK6-da81b474.png" },
+        new() { Guid="AF3F421B-F68B-401D-94B4-B982EE6C8A91", Kind="PISTOL", Id="U_M1911_Preorder_Hellfighter", Name="Hellfighter M1911", Kick="M1911 HF", Image="Colt1911-ed324bf1.png" },
+        new() { Guid="B97A8C29-A567-437F-9B6C-9E1E8FD86BF9", Kind="PISTOL", Id="U_LugerP08_Wep_Preorder", Name="Red Baron P08", Kick="P08 HNJ", Image="LugerP08-7f07aa2d.png" },
+        new() { Guid="5962340E-AED8-4B93-A10E-D7C91FFD2460", Kind="PISTOL", Id="U_M1911_Suppressed", Name="M1911 Silenced", Kick="M1911 XYQ", Image="M1911Silencer-d6c0e687.png" },
+        new() { Guid="B9333E7C-3D7D-4147-A569-9FC9BB2B4F5D", Kind="PISTOL", Id="U_SingleActionArmy", Name="Peacekeeper", Kick="Peacekeeper", Image="Colt_SAA-ef15294c.png" },
+        new() { Guid="F7CED576-7629-402A-8598-4A4998C02E0A", Kind="PISTOL", Id="U_M1911_Preorder_Triforce", Name="Doughboy M1911", Kick="M1911 BBXZ", Image="Colt1911-ed324bf1.png" },
         
         // Grenades
         new() { Guid="F0B75644-5B3F-45CD-9E42-9B67F3D4D37F", Kind="Grenade", Id="U_GermanStick", Name="破片手榴弹", Kick="German Stick", Image="GadgetFragmented-8c15152e.png" },
