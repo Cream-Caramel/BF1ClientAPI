@@ -16,4 +16,10 @@
         <DebugType>full</DebugType>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+      <PackageReference Include="System.Management" Version="7.0.2" />
+    </ItemGroup>
+
 </Project>

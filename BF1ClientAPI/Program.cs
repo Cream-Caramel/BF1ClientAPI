@@ -1,50 +1,49 @@
 using BF1ClientAPI.SDK;
 using BF1ClientAPI.Utils;
+using System.Threading;
 
 namespace BF1ClientAPI;
 
 public class Program
 {
-    public const string Host = "http://0.0.0.0:10086";
+    public const string Host = "http://127.0.0.1:10086";
+    public static class Globals
+    {
+        public static string NgrokURI;
+        public static string NgrokPath;
+        public static string ServerHost;
+        public static string Battlefield1Path;
+    }
 
     public static void Main(string[] args)
     {
-        Console.Title = "BF1ClientAPI | By CrazyZhang666";
+        Console.Title = "WatchDoge API";
+        string LocalIP = Misc.GetLocalIPAddress();
+        string PublicIP = Misc.GetPublicIPAddress();
+        string ClientCapabilities = Misc.GetCapabilities();
+        Config ClientConfig = Misc.ReadConfig();
+        Globals.ServerHost = ClientConfig.server;
+        Globals.NgrokPath = ClientConfig.ngrok_path;
+        Globals.Battlefield1Path = ClientConfig.bf1_path;
 
-        if (!Memory.Initialize())
-        {
-            Console.WriteLine("Battlefield 1 client API initialization failed, program terminated");
-            Console.WriteLine();
-
-            Console.WriteLine("Press any key to close this window...");
-            Console.Read();
-
-            return;
-        }
-
-        if (!Chat.AllocateMemory())
-        {
-            Console.WriteLine("Request for Chinese chat memory space failed, program terminated");
-            Console.WriteLine();
-
-            Console.WriteLine("Press any key to close this window...");
-            Console.ReadKey();
-
-            return;
-        }
-
-        Console.WriteLine("Battlefield 1 client API initialization successful!");
-        Console.WriteLine();
-
+        Console.WriteLine("WatchDoge initialized successfully.");  
         Console.WriteLine("----------------------------");
-        Console.WriteLine($"ProcessId: \t{Memory.Bf1ProId}");
-        Console.WriteLine($"ProcessHandle: \t{Memory.Bf1ProHandle}");
-        Console.WriteLine($"BaseAddressַ: \t0x{Memory.Bf1ProBaseAddress:X}");
-        Console.WriteLine($"WindowHandle: \t{Memory.Bf1WinHandle}");
-        Console.WriteLine($"MemAddress: \t0x{Chat.AllocateMemAddress:x}");
+        Console.WriteLine($"LocalClientIP:  \t{LocalIP}");
+        Console.WriteLine($"PublicClientIP: \t{PublicIP}");
         Console.WriteLine("----------------------------");
-        Console.WriteLine();
+        Ngrok.Configure(ClientConfig.ngrok_token);
+        Globals.NgrokURI = Ngrok.Start(ClientConfig.ngrok_path, 10086);
 
+        Console.WriteLine($"Waiting for response from server {Globals.ServerHost}. Retrying in 3s ...");
+        while (!Misc.AnnounceClient(Globals.ServerHost, PublicIP, ClientConfig.alias, Globals.NgrokURI, ClientCapabilities)) 
+        {
+            Console.WriteLine($"Waiting for response from server {Globals.ServerHost}. Retrying in 3s ...");
+            Thread.Sleep(3000);
+        }
+        Console.WriteLine("Connected with orchestator server. API is ready.");
+        Console.WriteLine($"Client alias {ClientConfig.alias}.");
+        Console.WriteLine($"Client ngrok {Globals.NgrokURI}.");
+        Console.WriteLine("----------------------------");
         Console.WriteLine($"Docs @ {Host}/index.html");
         Console.WriteLine("Press Ctrl+C to end the program");
         Console.WriteLine();
@@ -111,5 +110,10 @@ public class Program
         // Release memory
         Chat.FreeMemory();
         Memory.UnInitialize();
+        // Close ngrok and bf1
+        Ngrok.Stop();
+        Application.StopGame();
+        Misc.CloseClient(Globals.ServerHost, Globals.NgrokURI);
     }
+
 }
