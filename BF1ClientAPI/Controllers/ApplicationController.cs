@@ -18,8 +18,7 @@ public class ApplicationController : ControllerBase
     /// </remarks>
     [HttpPost]
     [Produces("application/json")]
-    public async Task<ActionResult<string>> StartGame(string GameId, bool DisableGPU, bool Spectator, int Timeout)
-    {
+    public async Task<ActionResult<string>> StartGame(string GameId, bool DisableGPU, bool Spectator, int Timeout) {
         var result = await Application.StartGame(GameId, DisableGPU, Spectator, Timeout);
         return Ok(result);
     }
@@ -33,9 +32,9 @@ public class ApplicationController : ControllerBase
     /// </remarks>
     [HttpPost]
     [Produces("application/json")]
-    public async Task<ActionResult<string>> Stop()
+    public Task<ActionResult<string>> Stop()
     {
         Application.StopGame();
-        return Ok("OK");
+        return Task.FromResult<ActionResult<string>>(Ok("OK"));
     }
 }
